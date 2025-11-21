@@ -1,1 +1,3 @@
 # -Language-Translator-Web-App-Java-NLP-Library-
+
+Acest proiect propune realizarea unei aplicații web capabile să traducă text între două limbi, folosind exclusiv ecosistemul Java și biblioteci NLP dedicate. Printr-un backend construit în Spring Boot și o interfață web simplă, utilizatorul poate introduce text într-o limbă, iar sistemul îl procesează și îl traduce folosind OpenNLP sau un model secvențial antrenat cu DL4J. Proiectul evidențiază modul în care tehnicile NLP pot fi integrate într-o aplicație modernă, îmbinând analiza lingvistică, preprocesarea textului și conceptul de machine translation într-o soluție compactă și accesibilă.
