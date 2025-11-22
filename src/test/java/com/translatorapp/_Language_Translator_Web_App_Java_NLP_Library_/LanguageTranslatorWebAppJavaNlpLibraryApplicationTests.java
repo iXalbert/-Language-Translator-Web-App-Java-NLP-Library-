@@ -1,13 +1,13 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootTest
-class LanguageTranslatorWebAppJavaNlpLibraryApplicationTests {
+@SpringBootApplication
+public class LanguageTranslatorWebAppJavaNlpLibraryApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LanguageTranslatorWebAppJavaNlpLibraryApplication.class, args);
+    }
 
 }
