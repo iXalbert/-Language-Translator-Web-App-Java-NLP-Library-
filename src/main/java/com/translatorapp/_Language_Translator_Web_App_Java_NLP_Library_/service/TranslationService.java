@@ -16,7 +16,7 @@ import java.io.IOException;
 @Service
 public class TranslationService {
 
-    @Value("classpath:en-token.bin")
+    @Value("classpath:en-token/token.model")
     private Resource modelResource;
 
     private TokenizerME tokenizer;
