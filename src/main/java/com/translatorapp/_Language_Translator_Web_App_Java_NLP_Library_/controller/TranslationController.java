@@ -4,23 +4,50 @@ import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.model.Tr
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.model.TranslationResponse;
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationService;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
 
 @RestController
 @RequestMapping("/api/v1")
+//@Getter
+//@Setter
 
-public class TranslationController{
+public class TranslationController {
+
+    private final TranslationService translationService;
 
     @Autowired
-    private TranslationService translationService;
+    public TranslationController(TranslationService translationService) {
+        this.translationService = translationService;
+    }
 
-    @PostMapping("/translate")
-    public TranslationResponse translate(@RequestBody TranslationRequest request){
+    @PostMapping
+    public ResponseEntity<TranslationResponse> translate(@RequestBody TranslationRequest request){
 
-        String sourceText = request.getSourceText();
-        String translatedText = translationService.performTranslation(sourceText);
+        try{
+            if(request.getSourceText() == null || request.getSourceText().trim().isEmpty()){
+                return ResponseEntity.badRequest().body(
+                        new TranslationResponse(null,"Textul sursa nu poate fi gol")
+                );
+            }
 
-        return new TranslationResponse(translatedText);
+            String translated = translationService.performTranslation(
+                    request.getSourceText(),
+                    request.getSourceLang(),
+                    request.getTargetLang()
+            );
+
+            return ResponseEntity.ok(
+                    new TranslationResponse(translated,"Traducerea efectuata cu succes")
+            );
+        }catch (Exception e){
+            return ResponseEntity.internalServerError().body(
+                    new TranslationResponse(null, "Eroare interna a servarului " + e.getMessage())
+            );
+        }
     }
 }
