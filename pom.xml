@@ -84,8 +84,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>3.8.1</version>
                 <configuration>
+                    <executable>
+                        /opt/homebrew/Cellar/openjdk/25.0.1/libexec/openjdk.jdk/Contents/Home/bin/javac
+                    </executable>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -106,6 +109,15 @@
                         <nonFilteredFileExtension>bin</nonFilteredFileExtension>
                         <nonFilteredFileExtension>model</nonFilteredFileExtension>
                     </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Asigură că Spring Boot folosește versiunea de Java setată în proprietăți -->
+                    <jvmArguments>-Djava.version=${java.version}</jvmArguments>
                 </configuration>
             </plugin>
 
