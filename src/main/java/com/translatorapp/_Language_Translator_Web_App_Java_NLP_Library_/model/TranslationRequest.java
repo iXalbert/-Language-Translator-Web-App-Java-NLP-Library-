@@ -3,12 +3,13 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.model;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Data;
 
 @Getter
 @Setter
 public class TranslationRequest{
-    private String sourceText;
 
+    private String sourceText;
     private String sourceLang;
     private String targetLang;
 
@@ -19,4 +20,21 @@ public class TranslationRequest{
     public void setSourceText(String sourceText){
         this.sourceText = sourceText;
     }
+
+    public String getSourceLang(){
+        return sourceLang;
+    }
+
+    public void setSourceLang(String sourceLang){
+        this.sourceLang = sourceLang;
+    }
+
+    public String getTargetLang(){
+        return targetLang;
+    }
+
+    public void setTargetLang(String targetLang){
+        this.targetLang = targetLang;
+    }
+
 }

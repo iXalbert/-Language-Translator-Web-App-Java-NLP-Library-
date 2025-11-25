@@ -46,7 +46,7 @@ public class TranslationService {
         }
     }
 
-    public String performTranslation(String sourceText) {
+    public String performTranslation(String sourceText, String sourceLang, String targetLang) {
         if (sourceText == null || sourceText.trim().isEmpty()) {
             return "Te rog să introduci text pentru traducere.";
         }
@@ -58,7 +58,7 @@ public class TranslationService {
                 "Placeholder : Traducerea (Token-uri : %s) din %s in %s. Text original : '%s' ",
                 processedText,
                 sourceLang,
-                tagetLang,
+                targetLang,
                 sourceText
         );
     }
