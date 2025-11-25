@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api/v1")
 //@Getter
 //@Setter
-
 public class TranslationController {
 
     private final TranslationService translationService;
@@ -44,9 +43,14 @@ public class TranslationController {
                     new TranslationResponse(translated,"Traducerea efectuata cu succes")
             );
         }catch (Exception e){
-            return ResponseEntity.internalServerError().body(
-                    new TranslationResponse(null, "Eroare interna a sererului " + e.getMessage())
-            );
+
+                    System.err.println("Eroare la procesarea traducerii: " + e.getMessage());
+
+                    e.printStackTrace();
+
+                    return ResponseEntity.internalServerError().body(
+                            new TranslationResponse(null, "Eroare interna a servarului la traducere :  " + e.getMessage())
+                    );
         }
     }
 }

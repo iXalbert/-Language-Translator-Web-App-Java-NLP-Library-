@@ -1,7 +1,5 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.model;
 
-import lombok.Getter;
-import lombok.Setter;
 public class TranslationResponse{
     private String translatedText;
 
@@ -15,5 +13,17 @@ public class TranslationResponse{
 
     public String getTranslatedText(){
         return translatedText;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setTranslatedText(String translatedText) {
+        this.translatedText = translatedText;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
     }
 }
