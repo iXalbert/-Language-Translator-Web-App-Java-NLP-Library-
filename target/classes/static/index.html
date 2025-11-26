@@ -1,55 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="ro">
 <head>
-    <title>Java Language Translator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traducător Java/AI (Test)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        textarea { width: 100%; height: 100px; margin-bottom: 10px; padding: 10px; }
-        button { padding: 10px 20px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; }
-        #translatedText { border: 1px solid #ccc; padding: 15px; min-height: 50px; background-color: #f8f9fa; margin-top: 10px; border-radius: 4px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            resize: none;
+            min-height: 150px;
+        }
     </style>
 </head>
 <body>
 
-<h1>Traducător Java/AI</h1>
+<div class="container">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Traducător Java/AI</h1>
 
-<label for="sourceText">Text Sursă:</label>
-<textarea id="sourceText" placeholder="Introdu textul aici..."></textarea>
+    <!-- Selectori de Limbă (Adăugați-i pentru a face cererea completă) -->
+    <div class="flex space-x-4 mb-4">
+        <div>
+            <label for="sourceLang" class="block text-sm font-medium text-gray-700">Limbă Sursă</label>
+            <select id="sourceLang" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="en" selected>Engleză (en)</option>
+                <option value="fr" selected>Franceza (fr)</option>
+                <option value="gr" selected>Germana (gr)</option>
+                <option value="ro" selected>Romana (ro)</option>
+            </select>
+        </div>
+        <div>
+            <label for="targetLang" class="block text-sm font-medium text-gray-700">Limbă Țintă</label>
+            <select id="targetLang" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="ro" selected>Română (ro)</option>
+                <option value="en" selected>Engleză (en)</option>
+                <option value="fr" selected>Franceza (fr)</option>
+                <option value="gr" selected>Germana (gr)</option>
+            </select>
+        </div>
+    </div>
 
-<button onclick="sendTranslationRequest()">Tradu</button>
+    <!-- Text Sursă -->
+    <label for="sourceText" class="block text-lg font-medium text-gray-700 mb-2">Text Sursă:</label>
+    <textarea id="sourceText" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150" placeholder="Introduceți textul de tradus aici..."></textarea>
 
-<h2>Traducere:</h2>
-<div id="translatedText">
-    [Traducerea va apărea aici]
+    <!-- Buton -->
+    <button id="translateButton" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-150 shadow-md mt-4">Tradu</button>
+
+    <h2 class="text-2xl font-bold mt-8 mb-3 text-gray-800">Traducere:</h2>
+    <!-- Rezultat -->
+    <div id="translationResult" class="min-h-[150px] p-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-800 whitespace-pre-wrap">
+        Așteaptă introducerea textului...
+    </div>
+
+    <!-- Mesaj de Eroare/Status -->
+    <div id="statusMessage" class="mt-4 p-3 rounded-lg text-sm hidden"></div>
 </div>
 
 <script>
-    function sendTranslationRequest() {
+    document.getElementById('translateButton').addEventListener('click', async () => {
         const sourceText = document.getElementById('sourceText').value;
-        const outputDiv = document.getElementById('translatedText');
-        outputDiv.innerHTML = 'Se traduce...';
+        const sourceLang = document.getElementById('sourceLang').value;
+        const targetLang = document.getElementById('targetLang').value;
+        const resultDiv = document.getElementById('translationResult');
+        const statusDiv = document.getElementById('statusMessage');
+        const apiUrl = 'http://localhost:8080/api/v1';
 
-        const requestData = {
-            sourceText: sourceText
-        };
+        resultDiv.textContent = 'Se traduce...';
+        statusDiv.classList.add('hidden');
 
-        // Apel POST către API-ul Spring Boot
-        fetch('/api/v1/translate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            outputDiv.innerHTML = data.translatedText;
-        })
-        .catch(error => {
-            console.error('Eroare:', error);
-            outputDiv.innerHTML = 'Eroare la comunicarea cu serviciul de traducere.';
-        });
-    }
+        // Verifică dacă textul sursă este gol
+        if (!sourceText.trim()) {
+            resultDiv.textContent = 'Textul sursă nu poate fi gol.';
+            statusDiv.textContent = 'Eroare: Vă rugăm introduceți text.';
+            statusDiv.className = 'mt-4 p-3 rounded-lg text-sm bg-red-100 text-red-700';
+            return;
+        }
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sourceText: sourceText,
+                    sourceLang: sourceLang,
+                    targetLang: targetLang
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Afișează traducerea (din câmpul 'translatedText' din răspunsul Java)
+                resultDiv.textContent = data.translatedText || 'Traducere goală primită.';
+
+                // Afișează mesajul de succes
+                statusDiv.textContent = data.statusMessage;
+                statusDiv.className = 'mt-4 p-3 rounded-lg text-sm bg-green-100 text-green-700';
+            } else {
+                // Afișează eroarea primită de la server (ex: 400 Bad Request sau 500 Internal Server Error)
+                resultDiv.textContent = `EROARE SERVER: ${data.statusMessage || 'A apărut o eroare necunoscută.'}`;
+                statusDiv.textContent = `Cod HTTP: ${response.status}. Detalii: ${data.statusMessage}`;
+                statusDiv.className = 'mt-4 p-3 rounded-lg text-sm bg-red-100 text-red-700';
+
+                // Logare eroare în consolă
+                console.error('Eroare API:', data);
+            }
+        } catch (error) {
+            // Eroare de rețea (serverul nu rulează sau CORS eșuat)
+            resultDiv.textContent = 'EROARE REȚEA: Nu s-a putut contacta serverul (localhost:8080/api/v1). Vă rugăm verificați că aplicația Spring Boot rulează.';
+            statusDiv.textContent = `Eroare: ${error.message}`;
+            statusDiv.className = 'mt-4 p-3 rounded-lg text-sm bg-red-100 text-red-700';
+            console.error('Eroare Fetch:', error);
+        }
+        statusDiv.classList.remove('hidden');
+    });
 </script>
+
 </body>
 </html>
