@@ -78,11 +78,13 @@ public class TranslationService {
                 })
                 .collect(Collectors.joining(" "));
         
-        String processedText = Arrays.stream(tokens).collect(Collectors.joining(" | "));
+        //String processedText = Arrays.stream(tokens).collect(Collectors.joining(" | "));
+
+        //return translatedText;
 
         return String.format(
                 "Placeholder : Traducerea (Token-uri : %s) din %s in %s. Text original : '%s' ",
-                processedText,
+                translatedText,
                 sourceLang,
                 targetLang,
                 sourceText
