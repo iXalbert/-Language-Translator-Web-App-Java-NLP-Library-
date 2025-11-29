@@ -1,4 +1,4 @@
-package service;
+package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service;
 
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionary;
 import org.junit.jupiter.api.BeforeEach;
