@@ -68,11 +68,11 @@ public class TranslationServiceTest {
     }
 
     @Test
-    void tetUntranslatedWordFallBack(){
+    void testUntranslatedWordFallBack(){
 
         String sourceText = "I love you.";
 
-        String[] tokens = {"I", "love", "uou", "."};
+        String[] tokens = {"I", "love", "you", "."};
         when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
 
         String[] tags = {"NNP", "VBP", "NNP", "."};
