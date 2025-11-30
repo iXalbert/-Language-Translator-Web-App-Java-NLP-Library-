@@ -25,14 +25,14 @@ public class TranslationServiceTest {
     @Mock
     private TranslationDictionary mockDictonary;
     @Mock
-    private TokenizerME mockTokenzier;
+    private TokenizerME mockTokenizer;
     @Mock
     private POSTaggerME mockPosTagger;
 
     @BeforeEach
     public void setUp(){
 
-        ReflectionTestUtils.setField(translationService, "tokenzier", mockTokenzier);
+        ReflectionTestUtils.setField(translationService, "tokenizer", mockTokenizer);
         ReflectionTestUtils.setField(translationService, "posTagger", mockPosTagger);
 
     }
@@ -43,7 +43,7 @@ public class TranslationServiceTest {
         String sourceText = "Hello World!";
 
         String[] tokens = {"Hello", "world", "!"};
-        when(mockTokenzier.tokenize(sourceText)).thenReturn(tokens);
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
 
         String[] tags = {"NNP", "NN", "."};
         when(mockPosTagger.tag(tokens)).thenReturn(tags);
@@ -73,10 +73,10 @@ public class TranslationServiceTest {
         String sourceText = "I love You.";
 
         String[] tokens = {"I", "love", "You", "."};
-        when(mockTokenzier.tokenize(sourceText)).thenReturn(tokens);
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
 
         String[] tags = {"NNP", "VBP", "NNP", "."};
-        when(mockTokenzier.tokenize(sourceText)).thenReturn(tags);
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tags);
 
         when(mockDictonary.getTranslation("i", "NNP")).thenReturn(null);
         when(mockDictonary.getTranslation("love", "VBP")).thenReturn(null);
