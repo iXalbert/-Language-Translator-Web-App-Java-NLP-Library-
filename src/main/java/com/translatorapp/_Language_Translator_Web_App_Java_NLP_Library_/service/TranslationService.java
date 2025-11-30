@@ -2,10 +2,6 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service
 
 import java.io.InputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.Map;
-import java.util.HashMap;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
@@ -110,7 +106,7 @@ public class TranslationService {
 
             String cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
 
-            String translatedWord = translationDictionary. getTranslation(cleanToken);
+            String translatedWord = translationDictionary. getTranslation("world", cleanToken);
 
             if(translatedWord == null){
 

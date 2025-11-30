@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest
