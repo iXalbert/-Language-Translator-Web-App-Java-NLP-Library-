@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Test set: com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.631 s <<< FAILURE! -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest
+com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest.tetUntranslatedWordFallBack -- Time elapsed: 0.009 s <<< ERROR!
+org.mockito.exceptions.misusing.PotentialStubbingProblem: 
+
+Strict stubbing argument mismatch. Please check:
+ - this invocation of 'getTranslation' method:
+    mockDictonary.getTranslation("uou", "NNP");
+    -> at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationService.performTranslation(TranslationService.java:116)
+ - has following stubbing(s) with different arguments:
+    1. mockDictonary.getTranslation("you", "NNP");
+      -> at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest.tetUntranslatedWordFallBack(TranslationServiceTest.java:83)
+    2. mockDictonary.getTranslation(".", ".");
+      -> at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest.tetUntranslatedWordFallBack(TranslationServiceTest.java:84)
+Typically, stubbing argument mismatch indicates user mistake when writing tests.
+Mockito fails early so that you can debug potential problem easily.
+However, there are legit scenarios when this exception generates false negative signal:
+  - stubbing the same method multiple times using 'given().will()' or 'when().then()' API
+    Please use 'will().given()' or 'doReturn().when()' API for stubbing.
+  - stubbed method is intentionally invoked with different arguments by code under test
+    Please use default or 'silent' JUnit Rule (equivalent of Strictness.LENIENT).
+For more information see javadoc for PotentialStubbingProblem class.
+	at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionary.getTranslation(TranslationDictionary.java:36)
+	at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationService.performTranslation(TranslationService.java:116)
+	at com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest.tetUntranslatedWordFallBack(TranslationServiceTest.java:86)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

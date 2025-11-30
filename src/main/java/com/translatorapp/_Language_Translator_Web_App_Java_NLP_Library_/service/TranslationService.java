@@ -104,9 +104,16 @@ public class TranslationService {
 
             String token = tokens[i];
 
-            String cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
+            String cleanToken;
 
-            String translatedWord = translationDictionary. getTranslation("world", cleanToken);
+            if (token.matches("^[\\.,;:\\?!]$")) {
+                cleanToken = token;
+            } else {
+
+                cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
+            }
+
+            String translatedWord = translationDictionary. getTranslation(cleanToken, tags[i]);
 
             if(translatedWord == null){
 

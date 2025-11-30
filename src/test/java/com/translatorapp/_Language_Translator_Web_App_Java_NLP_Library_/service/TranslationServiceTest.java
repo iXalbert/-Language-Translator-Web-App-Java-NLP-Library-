@@ -64,27 +64,27 @@ public class TranslationServiceTest {
 
         String result = translationService.performTranslation("", "EN", "RO");
 
-        assertEquals("Te rog sa introduci text pentru traducere.", result, "Ar trebui sa returneze mesajul de eroare pentru text gol.");
+        assertEquals("Te rog să introduci text pentru traducere.", result, "Ar trebui sa returneze mesajul de eroare pentru text gol.");
     }
 
     @Test
     void tetUntranslatedWordFallBack(){
 
-        String sourceText = "I love You.";
+        String sourceText = "I love you.";
 
-        String[] tokens = {"I", "love", "You", "."};
+        String[] tokens = {"I", "love", "uou", "."};
         when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
 
         String[] tags = {"NNP", "VBP", "NNP", "."};
-        when(mockTokenizer.tokenize(sourceText)).thenReturn(tags);
+        when(mockPosTagger.tag(tokens)).thenReturn(tags);
 
         when(mockDictonary.getTranslation("i", "NNP")).thenReturn(null);
         when(mockDictonary.getTranslation("love", "VBP")).thenReturn(null);
-        when(mockDictonary.getTranslation("You", "NNP")).thenReturn("You");
+        when(mockDictonary.getTranslation("you", "NNP")).thenReturn("you");
         when(mockDictonary.getTranslation(".", ".")).thenReturn(".");
 
         String result = translationService.performTranslation(sourceText, "EN", "RO");
 
-        assertEquals("I love You.", result, "Cuvintele netraduse ar terbui sa ramana in limba sursa.");
+        assertEquals("I love you.", result, "Cuvintele netraduse ar terbui sa ramana in limba sursa.");
     }
 }
