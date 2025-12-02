@@ -2,48 +2,47 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TranslationDictionaryTest {
 
     private TranslationDictionary dictionary;
 
     @BeforeEach
-    public void setUp(){
+    public void setup(){
         dictionary = new TranslationDictionary();
         dictionary.init();
     }
 
-    @Test // TEST 1: Traducere existentă
+    @Test
     void testExistingWordTranslation(){
-        String translated = dictionary.getTranslation("world", "hello");
+        String translated = dictionary.getTranslation("hello", null);
         assertEquals("salut", translated, "Traducerea pentru 'hello' ar trebui să fie 'salut'.");
     }
 
-    @Test // TEST 2: Punctuație existentă
+    @Test
     void testPunctuationTranslation(){
-        String translated = dictionary.getTranslation("world", "!");
+        String translated = dictionary.getTranslation("!", null);
         assertEquals("!", translated, "Punctuația ar trebui să se returneze corect.");
     }
 
-    @Test // TEST 3: Cuvânt inexistent (ar trebui să returneze null)
-    void testNonExistingWordReturnsNull() {
-        String translated = dictionary.getTranslation("world", "hzdvgbli");
+    @Test
+    void testNonExistingWordReturnsNull(){
+        String translated = dictionary.getTranslation("nonexistentword", null);
         assertNull(translated, "Ar trebui să returneze NULL pentru un cuvânt ce nu există.");
     }
 
-    @Test // TEST 4: Verifică inițializarea dicționarului
-    void testDictionaryIsInitialized() {
-        String translated = dictionary.getTranslation("world", "world");
+    @Test
+    void testDictionaryIsInitialized(){
+        String translated = dictionary.getTranslation("world", null);
         assertNotNull(translated, "Dicționarul ar trebui să fie inițializat și să conțină 'world'.");
     }
 
-    @Test // TEST 5: Verifică traducerea 'java'
+    @Test
     void testJavaTranslation(){
-        String translated = dictionary.getTranslation("world", "java");
+        String translated = dictionary.getTranslation("java", null);
         assertEquals("java", translated, "Traducerea pentru 'java' ar trebui să fie 'java'.");
     }
 }

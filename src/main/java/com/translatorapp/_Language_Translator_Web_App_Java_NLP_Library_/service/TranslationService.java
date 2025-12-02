@@ -29,8 +29,6 @@ public class TranslationService {
     private TokenizerME tokenizer;
     private POSTaggerME posTagger;
 
-    //private final Map<String, String> dictionary =  new HashMap<>();
-
     @Autowired
     public TranslationService(TranslationDictionary translationDictionary){
         this.translationDictionary = translationDictionary;
@@ -54,17 +52,6 @@ public class TranslationService {
 
             System.out.println("--- Modelul OpenNLP '" + modelResource.getFilename() + "' a fost încărcat cu succes! ---");
 
-            /*dictionary.put("hello", "salut");
-            dictionary.put("world", "lume");
-            dictionary.put("this", "aceasta");
-            dictionary.put("is", "este");
-            dictionary.put("a", "o");
-            dictionary.put("test", "proba");
-            dictionary.put("java", "java");
-            dictionary.put("application", "aplicatie");
-            dictionary.put(".", ".");
-            dictionary.put("?", "?");
-            dictionary.put("!", "!");*/
 
         } catch (IOException e) {
             throw new IllegalStateException("Eroare I/O (Fișier inaccesibil sau corupt).", e);
@@ -76,7 +63,7 @@ public class TranslationService {
         try(InputStream modelIn = posModelResource.getInputStream()){
 
             if(modelIn == null){
-               throw new IllegalStateException("Fatal error : Resursa POS nu a fost gaita ");
+                throw new IllegalStateException("Fatal error : Resursa POS nu a fost gaita ");
             }
 
             POSModel model = new POSModel(modelIn);
@@ -113,7 +100,7 @@ public class TranslationService {
                 cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
             }
 
-            String translatedWord = translationDictionary. getTranslation(cleanToken, tags[i]);
+            String translatedWord = translationDictionary.getTranslation(cleanToken, tags[i]);
 
             if(translatedWord == null){
 
@@ -132,26 +119,5 @@ public class TranslationService {
         }
 
         return resultBuilder.toString().trim();
-
-        /*String translatedText = Arrays.stream(tokens)
-                .map(token -> {
-                    String lowerToken = token.toLowerCase();
-                    
-                    return dictionary.getOrDefault(lowerToken,token);
-                })
-                .collect(Collectors.joining(" "));*/
-        
-        //String processedText = Arrays.stream(tokens).collect(Collectors.joining(" | "));
-
-        //return translatedText;
-    /*
-        return String.format(
-                "Placeholder : Traducerea (Token-uri : %s) din %s in %s. Text original : '%s' ",
-                translatedText,
-                sourceLang,
-                targetLang,
-                sourceText
-        );
-        */
     }
 }

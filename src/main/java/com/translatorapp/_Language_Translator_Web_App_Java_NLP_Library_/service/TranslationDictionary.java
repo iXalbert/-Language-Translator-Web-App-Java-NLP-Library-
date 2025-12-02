@@ -31,8 +31,8 @@ public class TranslationDictionary {
         System.out.println("Dictionarul s a initializazt cu succes");
     }
 
-    public String getTranslation(String world, String word){
+    public String getTranslation(String cleanWord, String posTag){
 
-        return dictionary.get(word);
+        return dictionary.get(cleanWord);
     }
 }
