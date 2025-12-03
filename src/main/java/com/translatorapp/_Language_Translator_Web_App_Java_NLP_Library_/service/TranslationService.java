@@ -91,6 +91,8 @@ public class TranslationService {
 
             String token = tokens[i];
 
+            System.out.println("DEBUG: Token = " + token + ", Tag POS = " + tags[i]);
+
             String cleanToken;
 
             if (token.matches("^[\\.,;:\\?!]$")) {

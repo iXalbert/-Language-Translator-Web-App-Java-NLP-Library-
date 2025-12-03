@@ -2,7 +2,11 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +14,9 @@ import java.util.Map;
 public class TranslationDictionary {
 
     private final Map<String, String> dictionary = new HashMap<>();
+
+    @Value("classpath:translation_data.txt")
+    private Resource dictionaryFile;
 
     private String createKey(String word, String posTag){
 
@@ -21,26 +28,43 @@ public class TranslationDictionary {
 
         System.out.println("Se initializeaza dictionarul ");
 
-        dictionary.put(createKey("hey", "NNP"), "salut");
-        dictionary.put(createKey("world", "NN"), "lume");
-        dictionary.put(createKey("this", "DT"), "aceasta");
-        dictionary.put(createKey("is", "VBZ"), "este");
-        dictionary.put(createKey("a", "DT"), "o");
-        dictionary.put(createKey("test", "NN"), "proba");
-        dictionary.put(createKey("java", "NNP"), "java");
-        dictionary.put(createKey("application", "NN"), "aplicatie");
-        dictionary.put(createKey(".","."), ".");
-        dictionary.put(createKey("?", "?"), "?");
-        dictionary.put(createKey("!", "."), "!");
+        try(BufferedReader reader = new BufferedReader(
 
-        dictionary.put(createKey("run", "NN"), "alergare");
-        dictionary.put(createKey("run", "VB"), "a alerga");
+                new InputStreamReader(dictionaryFile.getInputStream()))){
 
-        System.out.println("Dictionarul s a initializazt cu succes");
+            String line;
+
+            while (line = reader.readLine() != null){
+
+                if(line.trim().isEmpty()){
+                    continue;
+                }
+
+                String[] parts = line.split(",", 3);
+
+                if(parts.length == 3){
+
+                    String sourceWord = parts[0].trim().toLowerCase();
+                    String posTag = parts[1].trim();
+                    String translation = parts[2].trim();
+
+                    String key = createKey(sourceWord,posTag);
+                    dictionary.put(key,translation);
+                }else {
+                    System.err.println("Avertisment : Linia de dictionar e incorecta asteapta 3 parametrii " + line);
+                }
+            }
+
+            System.out.println("Dictionarul s a initializazt cu succes");
+        } catch (Exception e){
+            System.err.println("Eroare critica la fisierul de dictionar " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public String getTranslation(String cleanWord, String posTag){
 
+        /*
         String translated = dictionary.get(createKey(cleanWord,posTag));
 
         if(translated == null){
@@ -48,5 +72,7 @@ public class TranslationDictionary {
         }
 
         return translated;
+        */
+        return dictionary.get(createKey(cleanWord, posTag));
     }
 }

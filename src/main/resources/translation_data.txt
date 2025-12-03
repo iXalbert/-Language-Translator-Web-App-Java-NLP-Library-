@@ -1,0 +1,17 @@
+hello,NNP,Salut
+world,NN,lume
+this,DT,aceasta
+is,VBZ,este
+a,DT,o
+test,NN,proba
+java,NNP,java
+application,NN,aplicatie
+.,.,.
+?,?
+!,.,!
+run,NN,alergare
+run,VBP,a alerga
+run,VBP,a alerga
+cat,NN,pisica
+dog,NN,caine
+eat,VBP,a manca

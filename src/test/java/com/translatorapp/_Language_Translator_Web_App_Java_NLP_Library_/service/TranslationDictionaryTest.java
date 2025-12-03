@@ -19,7 +19,7 @@ public class TranslationDictionaryTest {
     @Test
     void testExistingWordTranslation(){
         String translated = dictionary.getTranslation("hello", "NNP");
-        assertEquals("Salut", translated, "Traducerea pentru 'hello' ar trebui să fie 'salut'.");
+        assertEquals("salut", translated, "Traducerea pentru 'hello' ar trebui să fie 'salut'.");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class TranslationDictionaryTest {
     @Test
     void testPOSDependentTranslation(){
         String translated_noun = dictionary.getTranslation("run", "NN");
-        String translated_verb = dictionary.getTranslation("run", "VB");
+        String translated_verb = dictionary.getTranslation("run", "VBP");
 
         assertEquals("alergare", translated_noun, "Traducerea pentru 'run' in substantiv ar terbui sa fie 'alergare '");
         assertEquals("a alerga", translated_verb, "Traducerea pentru 'run' in verb ar trebui sa fie 'a alerga' ");
