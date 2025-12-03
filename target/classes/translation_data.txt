@@ -1,17 +1,79 @@
-hello,NNP,salut
-world,NN,lume
-this,DT,aceasta
-is,VBZ,este
 a,DT,o
-test,NN,proba
-java,NNP,java
+and,CC,si
 application,NN,aplicatie
-.,.,.
-?,?,?
-!,.,!
+are,VBP,sunt
+big,JJ,mare
+book,NN,carte
+book,VB,a rezerva
+but,CC,dar
+can,MD,poate
+car,NN,masina
+cat,NN,pisica
+city,NN,oras
+day,NN,zi
+do,VBP,a face
+dog,NN,caine
+down,RB,jos
+eat,VBP,a manca
+eats,VBZ,mananca
+fast,RB,rapid
+good,JJ,bun
+happy,JJ,fericit
+have,VBP,a avea
+he,PRP,el
+hello,NNP,salut
+house,NN,casa
+I,PRP,eu
+is,VBZ,este
+it,PRP,el
+java,NNP,java
+job,NN,loc de munca
+know,VBP,a sti
+life,NN,viata
+like,VBP,a placea
+little,JJ,mic
+love,VBP,a iubi
+man,NN,barbat
+money,NN,bani
+my,PRP$,mea
+new,JJ,nou
+not,RB,nu
+old,JJ,vechi
+people,NN,oameni
+place,NN,loc
+read,VBP,a citi
+runs,VBZ,alearga
 run,NN,alergare
 run,VB,a alerga
 run,VBP,a alerga
-cat,NN,pisica
-dog,NN,caine
-eat,VBP,a manca
+she,PRP,ea
+small,JJ,mic
+table,NN,masa
+table,VB,a amana
+talk,VBP,a vorbi
+the,DT,cel
+they,PRP,ei
+think,VBP,a gandi
+this,DT,aceasta
+time,NN,timp
+to,TO,a
+up,RB,sus
+us,PRP,noi
+use,VBP,a folosi
+very,RB,foarte
+walk,VBP,a merge
+want,VBP,a vrea
+we,PRP,noi
+work,NN,munca
+work,VBP,a lucra
+world,NN,lume
+year,NN,an
+you,PRP,tu
+young,JJ,tanar
+
+.,.,.
+,,CC,,
+:,:,:
+;,;,;
+?,?,?
+!,.,!
