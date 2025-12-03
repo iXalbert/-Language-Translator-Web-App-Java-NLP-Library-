@@ -11,28 +11,42 @@ public class TranslationDictionary {
 
     private final Map<String, String> dictionary = new HashMap<>();
 
+    private String createKey(String word, String posTag){
+
+        return word.toLowerCase() + "_" + posTag;
+    }
+
     @PostConstruct
     public void init(){
 
         System.out.println("Se initializeaza dictionarul ");
 
-        dictionary.put("hello", "salut");
-        dictionary.put("world", "lume");
-        dictionary.put("this", "aceasta");
-        dictionary.put("is", "este");
-        dictionary.put("a", "o");
-        dictionary.put("test", "proba");
-        dictionary.put("java", "java");
-        dictionary.put("application", "aplicatie");
-        dictionary.put(".", ".");
-        dictionary.put("?", "?");
-        dictionary.put("!", "!");
+        dictionary.put(createKey("hey", "NNP"), "salut");
+        dictionary.put(createKey("world", "NN"), "lume");
+        dictionary.put(createKey("this", "DT"), "aceasta");
+        dictionary.put(createKey("is", "VBZ"), "este");
+        dictionary.put(createKey("a", "DT"), "o");
+        dictionary.put(createKey("test", "NN"), "proba");
+        dictionary.put(createKey("java", "NNP"), "java");
+        dictionary.put(createKey("application", "NN"), "aplicatie");
+        dictionary.put(createKey(".","."), ".");
+        dictionary.put(createKey("?", "?"), "?");
+        dictionary.put(createKey("!", "."), "!");
+
+        dictionary.put(createKey("run", "NN"), "alergare");
+        dictionary.put(createKey("run", "VB"), "a alerga");
 
         System.out.println("Dictionarul s a initializazt cu succes");
     }
 
     public String getTranslation(String cleanWord, String posTag){
 
-        return dictionary.get(cleanWord);
+        String translated = dictionary.get(createKey(cleanWord,posTag));
+
+        if(translated == null){
+            translated = dictionary.get(cleanWord);
+        }
+
+        return translated;
     }
 }
