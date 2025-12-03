@@ -34,7 +34,7 @@ public class TranslationDictionary {
 
             String line;
 
-            while (line = reader.readLine() != null){
+            while ((line = reader.readLine()) != null){
 
                 if(line.trim().isEmpty()){
                     continue;

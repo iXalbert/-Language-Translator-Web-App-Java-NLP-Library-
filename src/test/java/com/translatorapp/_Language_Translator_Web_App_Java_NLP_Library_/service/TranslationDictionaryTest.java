@@ -2,18 +2,26 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {TranslationDictionary.class})
 public class TranslationDictionaryTest {
 
+    @Autowired
     private TranslationDictionary dictionary;
 
     @BeforeEach
     public void setup(){
-        dictionary = new TranslationDictionary();
-        dictionary.init();
+
     }
 
     @Test
