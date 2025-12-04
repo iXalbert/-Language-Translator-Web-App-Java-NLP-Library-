@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.IOException;
 
 import jakarta.annotation.PostConstruct;
+import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -26,8 +27,13 @@ public class TranslationService {
     @Value("classpath:en-pos/pos.bin")
     private Resource posModelResource;
 
+
+    @Value("classpath:models/en-lemmatizer.bin")
+    private Resource lemmatizerModelResource;
+
     private TokenizerME tokenizer;
     private POSTaggerME posTagger;
+    private DictionaryLemmatizer lemmatizer;
 
     @Autowired
     public TranslationService(TranslationDictionary translationDictionary){
@@ -37,43 +43,40 @@ public class TranslationService {
 
     @PostConstruct
     public void init() {
-        String resourcePath = "en-token/token.bin";
-        System.out.println("DEBUG: Se încearcă încărcarea modelului din calea: " + modelResource);
-
         try (InputStream modelIn = modelResource.getInputStream()) {
-
             TokenizerModel model = new TokenizerModel(modelIn);
             this.tokenizer = new TokenizerME(model);
-
-            if (modelIn == null) {
-                throw new IllegalStateException("FATAL: Injectarea resursei a eșuat. Verificati daca fișierul există la calea specificată.");
-            }
-
-
             System.out.println("--- Modelul OpenNLP '" + modelResource.getFilename() + "' a fost încărcat cu succes! ---");
-
-
         } catch (IOException e) {
-            throw new IllegalStateException("Eroare I/O (Fișier inaccesibil sau corupt).", e);
+            throw new IllegalStateException("Eroare I/O la Tokenizer (Fișier inaccesibil sau corupt).", e);
         } catch (Exception e) {
-
-            throw new IllegalStateException("Eroare critică necunoscută la inițializarea modelului OpenNLP. Vă rugăm să verificați integritatea fișierului model.", e);
+            throw new IllegalStateException("Eroare critică necunoscută la inițializarea Tokenizer.", e);
         }
 
         try(InputStream modelIn = posModelResource.getInputStream()){
-
             if(modelIn == null){
-                throw new IllegalStateException("Fatal error : Resursa POS nu a fost gaita ");
+                throw new IllegalStateException("Fatal error : Resursa POS nu a fost gasita ");
             }
-
             POSModel model = new POSModel(modelIn);
             this.posTagger = new POSTaggerME(model);
-
             System.out.println("Modelul OpenNLP POS Tagger a fost incarcat cu succes");
         }catch (IOException e){
             throw new IllegalStateException("Eroare la incarcarea modelului OpenNLP POS Tagger");
         }catch (Exception e){
-            throw new IllegalStateException("Erroare critica necunoscuta ");
+            throw new IllegalStateException("Erroare critica necunoscuta la POS Tagger");
+        }
+
+
+        try(InputStream modelIn = lemmatizerModelResource.getInputStream()){
+            if(modelIn == null){
+                System.err.println("Eroare la deschiderea fisierului bin pentru Lemmatizer");
+            } else {
+                lemmatizer = new DictionaryLemmatizer(modelIn);
+                System.out.println("Lemmatizer a fost integrat cu succes");
+            }
+        }catch (Exception e){
+            System.err.println("Eroare la incarcarea Lemmatizer-ului: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -102,7 +105,6 @@ public class TranslationService {
                 if(stem.endsWith("g") || stem.endsWith("c")){
                     return stem;
                 }
-
                 return stem + "u";
 
             case "you":
@@ -114,7 +116,6 @@ public class TranslationService {
                 if(baseVerb.endsWith("a")){
                     return stem + "a";
                 }
-
                 return baseVerb;
 
             case "we":
@@ -129,7 +130,6 @@ public class TranslationService {
             default:
                 return baseVerb;
         }
-
     }
 
     public String performTranslation(String sourceText, String sourceLang, String targetLang) {
@@ -139,47 +139,58 @@ public class TranslationService {
 
         String[] tokens = tokenizer.tokenize(sourceText);
         String[] tags = posTagger.tag(tokens);
+        String[] lemmas = lemmatizer.lemmatize(tokens, tags);
 
         StringBuilder resultBuilder = new StringBuilder();
-
         String last_subject = null;
 
-        for(int i=0;i< tokens.length;i++){
-
+        for (int i = 0; i < tokens.length; i++) {
             String token = tokens[i];
+            String tag = tags[i];
+            String lemma = lemmas[i];
 
-            System.out.println("DEBUG: Token = " + token + ", Tag POS = " + tags[i]);
+            System.out.println("DEBUG: Token = " + token + ", Tag POS = " + tag + ", Lemma = " + lemma);
 
-            String cleanToken;
+            String wordToTranslate;
+            String translatedWord;
 
-            if (token.matches("^[\\.,;:\\?!]$")) {
-                cleanToken = token;
+
+            if (lemma != null && !lemma.equals("O") && !tag.matches("\\p{Punct}")) {
+                wordToTranslate = lemma;
             } else {
-
-                cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
+                wordToTranslate = token;
             }
 
-            if((tags[i].startsWith("NNP") || tags[i].startsWith("PRP"))
-                && ( cleanToken.equals("i") || cleanToken.equals("you") || cleanToken.equals("he") || cleanToken.equals("she") || cleanToken.equals("it") || cleanToken.equals("we") || cleanToken.equals("they"))){
 
-                last_subject = cleanToken;
+            if (tags[i].startsWith("PRP") || tags[i].startsWith("NNP")) {
+                String potentialSubject = wordToTranslate.toLowerCase();
+                if (potentialSubject.equals("i") || potentialSubject.equals("you") || potentialSubject.equals("he") ||
+                        potentialSubject.equals("she") || potentialSubject.equals("it") || potentialSubject.equals("we") ||
+                        potentialSubject.equals("they")) {
+                    last_subject = potentialSubject;
+                }
             }
 
-            String translatedWord = translationDictionary.getTranslation(cleanToken, tags[i]);
 
-            if(translatedWord == null){
-
+            if (tag.matches("\\p{Punct}")) {
                 translatedWord = token;
-            }else if(tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null){
+            } else {
+                translatedWord = translationDictionary.getTranslation(wordToTranslate.toLowerCase(), tag);
 
-                translatedWord = conjugaVerb(translatedWord,last_subject);
+                if (translatedWord == null) {
+                    translatedWord = token;
+                } else if (tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null) {
+
+                    translatedWord = conjugaVerb(translatedWord, last_subject);
+                }
             }
 
-            if(Character.isUpperCase(token.charAt(0)) && translatedWord.length() > 0){
+            if (Character.isUpperCase(token.charAt(0)) && translatedWord.length() > 0) {
                 translatedWord = Character.toUpperCase(translatedWord.charAt(0)) + translatedWord.substring(1);
             }
 
-            if(i>0 && !token.matches("^[\\.,;:\\?!]$")){
+
+            if (i > 0 && !token.matches("\\p{Punct}")) {
                 resultBuilder.append(" ");
             }
 
