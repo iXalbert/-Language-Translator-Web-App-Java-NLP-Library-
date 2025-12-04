@@ -15,7 +15,7 @@ public class TranslationDictionary {
 
     private final Map<String, String> dictionary = new HashMap<>();
 
-    @Value("classpath:translation_data.txt")
+    @Value("${app.dictionary.path}")
     private Resource dictionaryFile;
 
     private String createKey(String word, String posTag){
@@ -50,6 +50,8 @@ public class TranslationDictionary {
 
                     String key = createKey(sourceWord,posTag);
                     dictionary.put(key,translation);
+
+                    System.out.println("DEBUG : Cheia stocata : " + key);
                 }else {
                     System.err.println("Avertisment : Linia de dictionar e incorecta asteapta 3 parametrii " + line);
                 }

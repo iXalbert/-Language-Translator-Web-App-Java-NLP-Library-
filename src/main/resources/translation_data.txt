@@ -70,7 +70,6 @@ world,NN,lume
 year,NN,an
 you,PRP,tu
 young,JJ,tanar
-
 .,.,.
 ,,CC,,
 :,:,:

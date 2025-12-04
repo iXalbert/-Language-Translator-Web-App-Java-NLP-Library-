@@ -1,9 +1,11 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service;
 
+import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.LanguageTranslatorWebAppJavaNlpLibraryApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {TranslationDictionary.class})
+@SpringBootTest(classes = LanguageTranslatorWebAppJavaNlpLibraryApplication.class)
+//@ContextConfiguration(classes = {TranslationDictionary.class})
 public class TranslationDictionaryTest {
 
     @Autowired
