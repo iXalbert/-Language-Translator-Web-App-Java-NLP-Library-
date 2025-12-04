@@ -77,6 +77,61 @@ public class TranslationService {
         }
     }
 
+    private String conjugaVerb(String verb, String subject){
+
+        if(!verb.startsWith("a ")){
+            return verb;
+        }
+
+        String baseVerb = verb.substring(2).trim();
+        String stem;
+
+        if(baseVerb.endsWith("a")){
+            stem = baseVerb.substring(0, baseVerb.length() - 1);
+        }
+        else if(baseVerb.endsWith("i")){
+            stem = baseVerb.substring(0, baseVerb.length() - 1);
+        }
+        else{
+            stem = baseVerb;
+        }
+
+        switch (subject.toLowerCase()){
+
+            case "i":
+                if(stem.endsWith("g") || stem.endsWith("c")){
+                    return stem;
+                }
+
+                return stem + "u";
+
+            case "you":
+                return stem + "i";
+
+            case "he":
+            case "she":
+            case "it":
+                if(baseVerb.endsWith("a")){
+                    return stem + "a";
+                }
+
+                return baseVerb;
+
+            case "we":
+                return stem + "m";
+
+            case "they":
+                if(baseVerb.endsWith("a")){
+                    return stem + "a";
+                }
+                return baseVerb;
+
+            default:
+                return baseVerb;
+        }
+
+    }
+
     public String performTranslation(String sourceText, String sourceLang, String targetLang) {
         if (sourceText == null || sourceText.trim().isEmpty()) {
             return "Te rog să introduci text pentru traducere.";
@@ -86,6 +141,8 @@ public class TranslationService {
         String[] tags = posTagger.tag(tokens);
 
         StringBuilder resultBuilder = new StringBuilder();
+
+        String last_subject = null;
 
         for(int i=0;i< tokens.length;i++){
 
@@ -102,11 +159,20 @@ public class TranslationService {
                 cleanToken = token.replaceAll("[\\.,;:\\?!]", "").toLowerCase();
             }
 
+            if((tags[i].startsWith("NNP") || tags[i].startsWith("PRP"))
+                && ( cleanToken.equals("i") || cleanToken.equals("you") || cleanToken.equals("he") || cleanToken.equals("she") || cleanToken.equals("it") || cleanToken.equals("we") || cleanToken.equals("they"))){
+
+                last_subject = cleanToken;
+            }
+
             String translatedWord = translationDictionary.getTranslation(cleanToken, tags[i]);
 
             if(translatedWord == null){
 
                 translatedWord = token;
+            }else if(tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null){
+
+                translatedWord = conjugaVerb(translatedWord,last_subject);
             }
 
             if(Character.isUpperCase(token.charAt(0)) && translatedWord.length() > 0){
