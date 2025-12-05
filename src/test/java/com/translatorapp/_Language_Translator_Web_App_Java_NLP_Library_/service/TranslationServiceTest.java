@@ -99,4 +99,32 @@ public class TranslationServiceTest {
 
         assertEquals("I love you.", result, "Cuvintele netraduse ar terbui sa ramana in limba sursa.");
     }
+
+    @Test
+    void testConjugareVerb(){
+
+        String sourceText = "I read a book.";
+
+        String[] tokens = {"I", "read", "a", "book", "."};
+
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
+
+        String[] tags = {"PRP", "VBP", "DT", "NN", "."};
+
+        when(mockPosTagger.tag(tokens)).thenReturn(tags);
+
+        String[] lemmas = {"i", "read", "a", "book", "O"};
+
+        when(mockLemmatizer.lemmatize(eq(tokens),eq(tags))).thenReturn(lemmas);
+
+        when(mockDictonary.getTranslation(eq("i"), eq("PRP"))).thenReturn("eu");
+        when(mockDictonary.getTranslation(eq("read"), eq("VBP"))).thenReturn("a citi");
+        when(mockDictonary.getTranslation(eq("a"), eq("DT"))).thenReturn("o");
+        when(mockDictonary.getTranslation(eq("book"), eq("NN"))).thenReturn("carte");
+
+        String result = translationService.performTranslation(sourceText, "EN", "RO");
+
+        assertEquals("Eu citu o carte.", result, "Verbul ar trebui sa fie conjugat pe baza subiectului 'i'");
+
+    }
 }
