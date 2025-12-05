@@ -127,4 +127,30 @@ public class TranslationServiceTest {
         assertEquals("Eu citu o carte.", result, "Verbul ar trebui sa fie conjugat pe baza subiectului 'i'");
 
     }
+
+    @Test
+    void testVerbConjugationWithReflexiveSubject() {
+        String sourceText = "We work hard.";
+
+        String[] tokens = {"We", "work", "hard", "."};
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
+
+        String[] tags = {"PRP", "VBP", "RB", "."};
+        when(mockPosTagger.tag(tokens)).thenReturn(tags);
+
+        String[] lemmas = {"we", "work", "hard", "O"};
+        when(mockLemmatizer.lemmatize(eq(tokens), eq(tags))).thenReturn(lemmas);
+
+
+        when(mockDictonary.getTranslation(eq("we"), eq("PRP"))).thenReturn("noi");
+
+        when(mockDictonary.getTranslation(eq("work"), eq("VBP"))).thenReturn("a lucra");
+
+
+        when(mockDictonary.getTranslation(eq("hard"), eq("RB"))).thenReturn("greu");
+
+        String result = translationService.performTranslation(sourceText, "EN", "RO");
+
+        assertEquals("Noi lucrm greu.", result, "Verbul 'a lucra' ar trebui să fie conjugat la 'noi'.");
+    }
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.468 s -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.460 s -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationServiceTest
