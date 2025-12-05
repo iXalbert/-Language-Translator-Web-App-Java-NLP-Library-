@@ -21,7 +21,7 @@ good,JJ,bun
 happy,JJ,fericit
 have,VBP,a avea
 he,PRP,el
-hello,NNP,salut
+Hello,NNP,salut
 house,NN,casa
 I,PRP,eu
 is,VBZ,este

@@ -1,25 +1,27 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service;
 
+import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.postag.POSTaggerME;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {TranslationService.class, TranslationDictionary.class})
 public class TranslationServiceTest {
 
-    @InjectMocks
+    @Autowired
     private TranslationService translationService;
 
     @Mock
@@ -28,13 +30,17 @@ public class TranslationServiceTest {
     private TokenizerME mockTokenizer;
     @Mock
     private POSTaggerME mockPosTagger;
+    @Mock
+    private DictionaryLemmatizer mockLemmatizer;
 
     @BeforeEach
     public void setUp(){
 
+        ReflectionTestUtils.setField(translationService,"translationDictionary", mockDictonary);
+
         ReflectionTestUtils.setField(translationService, "tokenizer", mockTokenizer);
         ReflectionTestUtils.setField(translationService, "posTagger", mockPosTagger);
-
+        ReflectionTestUtils.setField(translationService, "lemmatizer", mockLemmatizer);
     }
 
     @Test
@@ -48,15 +54,16 @@ public class TranslationServiceTest {
         String[] tags = {"NNP", "NN", "."};
         when(mockPosTagger.tag(tokens)).thenReturn(tags);
 
-        when(mockDictonary.getTranslation("hello", "NNP")).thenReturn("Salut");
-        when(mockDictonary.getTranslation("world", "NN")).thenReturn("lume");
-        when(mockDictonary.getTranslation("!", ".")).thenReturn("!");
+        String[] lemmas = {"hello", "world", "O"};
+        when(mockLemmatizer.lemmatize(eq(tokens), eq(tags))).thenReturn(lemmas);
+
+        when(mockDictonary.getTranslation(eq("hello"), eq("NNP"))).thenReturn("Salut");
+        when(mockDictonary.getTranslation(eq("world"), eq("NN"))).thenReturn("lume");
+        //when(mockDictonary.getTranslation(eq("!"), eq("."))).thenReturn("!");
 
         String result = translationService.performTranslation(sourceText, "EN", "RO");
 
         assertEquals("Salut lume!", result, "Traducerea ar trebui sa includa majuscule si punctuatie corecta.");
-
-
     }
 
     @Test
@@ -75,13 +82,18 @@ public class TranslationServiceTest {
         String[] tokens = {"I", "love", "you", "."};
         when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
 
-        String[] tags = {"NNP", "VBP", "NNP", "."};
+        String[] tags = {"PRP", "VBP", "PRP", "."};
         when(mockPosTagger.tag(tokens)).thenReturn(tags);
 
-        when(mockDictonary.getTranslation("i", "NNP")).thenReturn(null);
-        when(mockDictonary.getTranslation("love", "VBP")).thenReturn(null);
-        when(mockDictonary.getTranslation("you", "NNP")).thenReturn("you");
-        when(mockDictonary.getTranslation(".", ".")).thenReturn(".");
+
+        String[] lemmas = {"i", "love", "you", "O"};
+        when(mockLemmatizer.lemmatize(eq(tokens), eq(tags))).thenReturn(lemmas);
+
+
+        when(mockDictonary.getTranslation(eq("i"), eq("PRP"))).thenReturn(null);
+        when(mockDictonary.getTranslation(eq("love"), eq("VBP"))).thenReturn(null);
+        when(mockDictonary.getTranslation(eq("you"), eq("PRP"))).thenReturn("you");
+        //when(mockDictonary.getTranslation(eq("."), eq("."))).thenReturn(".");
 
         String result = translationService.performTranslation(sourceText, "EN", "RO");
 

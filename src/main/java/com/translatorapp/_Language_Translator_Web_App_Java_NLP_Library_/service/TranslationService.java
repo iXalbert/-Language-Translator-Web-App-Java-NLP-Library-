@@ -28,7 +28,7 @@ public class TranslationService {
     private Resource posModelResource;
 
 
-    @Value("classpath:models/en-lemmatizer.bin")
+    @Value("classpath:models/en-lemmatizer.dict")
     private Resource lemmatizerModelResource;
 
     private TokenizerME tokenizer;
@@ -67,16 +67,16 @@ public class TranslationService {
         }
 
 
-        try(InputStream modelIn = lemmatizerModelResource.getInputStream()){
+        try(InputStream modelIn = getClass().getResourceAsStream("/models/en-lemmatizer.dict")){
             if(modelIn == null){
-                System.err.println("Eroare la deschiderea fisierului bin pentru Lemmatizer");
-            } else {
-                lemmatizer = new DictionaryLemmatizer(modelIn);
-                System.out.println("Lemmatizer a fost integrat cu succes");
+                // Dacă stream-ul este null, fișierul lipsește din Classpath!
+                throw new IllegalStateException("FATAL: Resursa 'en-lemmatizer.dict' nu a fost găsita în src/main/resources/models/. Verificați calea!");
             }
+            lemmatizer = new DictionaryLemmatizer(modelIn);
+            System.out.println("Lemmatizer a fost integrat cu succes");
         }catch (Exception e){
-            System.err.println("Eroare la incarcarea Lemmatizer-ului: " + e.getMessage());
-            e.printStackTrace();
+            // Aruncăm excepția reală
+            throw new IllegalStateException("Eroare la incarcarea Lemmatizer-ului. Verificati formatul fisierului .dict", e);
         }
     }
 
