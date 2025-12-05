@@ -6,6 +6,16 @@ public class TranslationRequest{
     private String sourceLang;
     private String targetLang;
 
+    public TranslationRequest(String sourceText, String sourceLang, String targetLang){
+        this.targetLang = targetLang;
+        this.sourceLang = sourceLang;
+        this.sourceText = sourceText;
+    }
+
+    public TranslationRequest(){
+
+    }
+
     public String getSourceText(){
         return sourceText;
     }

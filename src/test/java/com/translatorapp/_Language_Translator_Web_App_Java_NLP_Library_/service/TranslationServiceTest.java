@@ -169,7 +169,7 @@ public class TranslationServiceTest {
 
         when(mockDictonary.getTranslation(eq("do"), eq("VBP"))).thenReturn(null);
         when(mockDictonary.getTranslation(eq("i"), eq("PRP"))).thenReturn("eu");
-        when(mockDictonary.getTranslation(eq("know"), eq("VBP"))).thenReturn("a sti"); 
+        when(mockDictonary.getTranslation(eq("know"), eq("VBP"))).thenReturn("a sti");
         when(mockDictonary.getTranslation(eq("java"), eq("NNP"))).thenReturn("Java");
 
         String result = translationService.performTranslation(sourceText, "EN", "RO");
