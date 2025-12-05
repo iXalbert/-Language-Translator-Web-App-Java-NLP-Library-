@@ -153,4 +153,28 @@ public class TranslationServiceTest {
 
         assertEquals("Noi lucrm greu.", result, "Verbul 'a lucra' ar trebui să fie conjugat la 'noi'.");
     }
+
+    @Test
+    void testFormattingAndCapitalization() {
+        String sourceText = "Do I know Java?";
+
+        String[] tokens = {"Do", "I", "know", "Java", "?"};
+        when(mockTokenizer.tokenize(sourceText)).thenReturn(tokens);
+
+        String[] tags = {"VBP", "PRP", "VBP", "NNP", "?"};
+        when(mockPosTagger.tag(tokens)).thenReturn(tags);
+
+        String[] lemmas = {"do", "i", "know", "java", "O"};
+        when(mockLemmatizer.lemmatize(eq(tokens), eq(tags))).thenReturn(lemmas);
+
+        when(mockDictonary.getTranslation(eq("do"), eq("VBP"))).thenReturn(null);
+        when(mockDictonary.getTranslation(eq("i"), eq("PRP"))).thenReturn("eu");
+        when(mockDictonary.getTranslation(eq("know"), eq("VBP"))).thenReturn("a sti"); 
+        when(mockDictonary.getTranslation(eq("java"), eq("NNP"))).thenReturn("Java");
+
+        String result = translationService.performTranslation(sourceText, "EN", "RO");
+
+
+        assertEquals("Do Eu stu Java?", result, "Trebuie sa gestioneze corect majusculele, spațiile, conjugarea si punctuația finală.");
+    }
 }
