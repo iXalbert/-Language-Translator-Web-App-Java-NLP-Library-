@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: controller.TranslationControllerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.163 s -- in controller.TranslationControllerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.221 s -- in controller.TranslationControllerTest

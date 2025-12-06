@@ -2,8 +2,10 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
+@EnableCaching
 public class LanguageTranslatorWebAppJavaNlpLibraryApplication {
 
 	public static void main(String[] args) {

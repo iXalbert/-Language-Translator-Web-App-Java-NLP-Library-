@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import jakarta.annotation.PostConstruct;
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -21,10 +22,10 @@ public class TranslationService {
 
     private final TranslationDictionary translationDictionary;
 
-    @Value("classpath:en-token/token.bin")
+    @Value("classpath:token/en-token.bin")
     private Resource modelResource;
 
-    @Value("classpath:en-pos/pos.bin")
+    @Value("classpath:pos/en-pos.bin")
     private Resource posModelResource;
 
 
@@ -131,11 +132,15 @@ public class TranslationService {
                 return baseVerb;
         }
     }
-
+    @Cacheable("translations")
     public String performTranslation(String sourceText, String sourceLang, String targetLang) {
+
+
         if (sourceText == null || sourceText.trim().isEmpty()) {
             return "Te rog să introduci text pentru traducere.";
         }
+
+        System.out.println("Executa logica de traducere complexa (nu din cache)");
 
         String[] tokens = tokenizer.tokenize(sourceText);
         String[] tags = posTagger.tag(tokens);

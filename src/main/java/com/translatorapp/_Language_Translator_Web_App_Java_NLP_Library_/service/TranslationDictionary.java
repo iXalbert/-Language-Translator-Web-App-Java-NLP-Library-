@@ -15,7 +15,7 @@ public class TranslationDictionary {
 
     private final Map<String, String> dictionary = new HashMap<>();
 
-    @Value("${app.dictionary.path}")
+    @Value("${app.dictionary.path.en}")
     private Resource dictionaryFile;
 
     private String createKey(String word, String posTag){
