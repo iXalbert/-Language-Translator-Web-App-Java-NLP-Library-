@@ -14,16 +14,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<TranslationResponse> handleValidationException(TranslationValidationException ex){
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new TranslationResponse(null, "Eroare de validare " + ex.getMessage()));
+                .body(new TranslationResponse(null, "Eroare de validare: " + ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<TranslationResponse> handleAllException(TranslationValidationException ex){
+    public ResponseEntity<TranslationResponse> handleAllException(Exception ex){
 
         System.err.println("Eroare neasteptata la traducere : " + ex.getMessage());
         ex.printStackTrace();
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new TranslationResponse(null,"Eroare interna a serverului" + ex.getMessage()));
+                .body(new TranslationResponse(null,"Eroare interna a serverului: " + ex.getMessage()));
     }
 }
