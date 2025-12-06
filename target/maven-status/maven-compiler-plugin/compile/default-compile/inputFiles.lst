@@ -1,5 +1,8 @@
 /Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/LanguageTranslatorWebAppJavaNlpLibraryApplication.java
+/Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/config/OpenApiConfig.java
 /Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/controller/TranslationController.java
+/Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/exception/GlobalExceptionHandler.java
+/Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/exception/TranslationValidationException.java
 /Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/model/TranslationRequest.java
 /Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/model/TranslationResponse.java
 /Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/src/main/java/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/service/TranslationDictionary.java

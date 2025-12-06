@@ -1,75 +1,819 @@
 a,DT,o
-and,CC,si
-application,NN,aplicatie
-are,VBP,sunt
+ability,NN,abilitate
+able,JJ,capabil
+about,IN,despre
+above,IN,deasupra
+accept,VBP,a accepta
+across,IN,peste
+act,NN,act
+act,VBP,a acționa
+add,VBP,a adăuga
+afraid,JJ,frică
+after,IN,după
+again,RB,din nou
+against,IN,împotriva
+age,NN,vârstă
+ago,RB,în urmă
+agree,VBP,a fi de acord
+air,NN,aer
+all,DT,tot
+allow,VBP,a permite
+almost,RB,aproape
+alone,JJ,singur
+along,IN,de-a lungul
+already,RB,deja
+also,RB,de asemenea
+although,IN,deși
+always,RB,întotdeauna
+am,VBP,sunt
+among,IN,printre
+amount,NN,cantitate
+an,DT,un
+and,CC,și
+anger,NN,furie
+animal,NN,animal
+another,DT,altul
+answer,NN,răspuns
+answer,VBP,a răspunde
+any,DT,orice
+anyone,NN,oricine
+anything,NN,orice
+appear,VBP,a apărea
+application,NN,aplicație
+area,NN,zonă
+argue,VBP,a argumenta
+arm,NN,braț
+army,NN,armată
+around,IN,în jurul
+arrive,VBP,a ajunge
+art,NN,artă
+as,IN,ca
+ask,VBP,a întreba
+at,IN,la
+attack,VBP,a ataca
+attention,NN,atenție
+author,NN,autor
+authority,NN,autoritate
+available,JJ,disponibil
+avoid,VBP,a evita
+away,RB,departe
+baby,NN,copil
+back,RB,înapoi
+bad,JJ,rău
+ball,NN,minge
+bank,NN,bancă
+bar,NN,bar
+base,NN,bază
+be,VB,a fi
+beautiful,JJ,frumos
+because,IN,deoarece
+become,VBP,a deveni
+bed,NN,pat
+before,IN,înainte
+begin,VBP,a începe
+behind,IN,în spatele
+believe,VBP,a crede
+benefit,NN,beneficiu
+best,JJ,cel mai bun
+better,JJ,mai bun
+between,IN,între
 big,JJ,mare
+bill,NN,factură
+black,JJ,negru
+blood,NN,sânge
+blue,JJ,albastru
+board,NN,bord
+body,NN,corp
 book,NN,carte
 book,VB,a rezerva
+both,DT,ambele
+box,NN,cutie
+boy,NN,băiat
+break,VBP,a sparge
+bring,VBP,a aduce
+brother,NN,frate
+build,VBP,a construi
+business,NN,afacere
 but,CC,dar
+buy,VBP,a cumpăra
+by,IN,de
+call,VBP,a chema
 can,MD,poate
-car,NN,masina
-cat,NN,pisica
-city,NN,oras
+car,NN,mașină
+care,VBP,a avea grijă
+carry,VBP,a căra
+case,NN,caz
+cat,NN,pisică
+catch,VBP,a prinde
+cause,NN,cauză
+center,NN,centru
+century,NN,secol
+certain,JJ,sigur
+change,VBP,a schimba
+check,VBP,a verifica
+child,NN,copil
+choose,VBP,a alege
+church,NN,biserică
+citizen,NN,cetățean
+city,NN,oraș
+claim,VBP,a pretinde
+class,NN,clasă
+clear,JJ,clar
+clearly,RB,în mod clar
+close,RB,aproape
+cold,JJ,rece
+come,VBP,a veni
+common,JJ,comun
+community,NN,comunitate
+company,NN,companie
+compare,VBP,a compara
+computer,NN,computer
+concern,NN,îngrijorare
+condition,NN,condiție
+consider,VBP,a considera
+continue,VBP,a continua
+control,NN,control
+cost,NN,cost
+could,MD,ar putea
+country,NN,țară
+couple,NN,cuplu
+course,NN,curs
+court,NN,instanță
+cover,VBP,a acoperi
+create,VBP,a crea
+crime,NN,crimă
+cultural,JJ,cultural
+culture,NN,cultură
+cup,NN,cană
+current,JJ,curent
+cut,VBP,a tăia
+dark,JJ,întunecat
+data,NN,date
+daughter,NN,fiică
 day,NN,zi
+dead,JJ,mort
+deal,NN,înțelegere
+death,NN,moarte
+debate,NN,dezbatere
+decide,VBP,a decide
+deep,JJ,adânc
+degree,NN,grad
+develop,VBP,a dezvolta
+development,NN,dezvoltare
+die,VBP,a muri
+difference,NN,diferență
+different,JJ,diferit
+difficult,JJ,dificil
+dinner,NN,cină
+direction,NN,direcție
+discover,VBP,a descoperi
+discuss,VBP,a discuta
 do,VBP,a face
-dog,NN,caine
+doctor,NN,doctor
+dog,NN,câine
+door,NN,ușă
 down,RB,jos
-eat,VBP,a manca
-eats,VBZ,mananca
+draw,VBP,a desena
+dream,NN,vis
+drive,VBP,a conduce
+during,IN,în timpul
+each,DT,fiecare
+early,RB,devreme
+east,NN,est
+easy,JJ,ușor
+eat,VBP,a mânca
+eats,VBZ,mănâncă
+economic,JJ,economic
+education,NN,educație
+effect,NN,efect
+effort,NN,efort
+eight,CD,opt
+either,DT,fie
+election,NN,alegere
+else,RB,altfel
+employee,NN,angajat
+end,NN,sfârșit
+energy,NN,energie
+enjoy,VBP,a se bucura
+enough,JJ,suficient
+enter,VBP,a intra
+entire,JJ,întreg
+environment,NN,mediu
+especially,RB,mai ales
+establish,VBP,a stabili
+even,RB,chiar
+evening,NN,seară
+ever,RB,vreodată
+every,DT,fiecare
+everyone,NN,toată lumea
+everything,NN,totul
+evidence,NN,dovadă
+exact,JJ,exact
+example,NN,exemplu
+expect,VBP,a se aștepta
+experience,NN,experiență
+explain,VBP,a explica
+eye,NN,ochi
+face,NN,față
+fact,NN,fapt
+factor,NN,factor
+fail,VBP,a eșua
+fall,VBP,a cădea
+family,NN,familie
+far,RB,departe
 fast,RB,rapid
+father,NN,tată
+fear,NN,frică
+feel,VBP,a simți
+few,JJ,puțini
+field,NN,câmp
+fight,VBP,a lupta
+figure,NN,figură
+fill,VBP,a umple
+film,NN,film
+final,JJ,final
+finally,RB,în cele din urmă
+find,VBP,a găsi
+fine,JJ,bine
+finger,NN,deget
+finish,VBP,a termina
+fire,NN,foc
+firm,NN,firmă
+first,JJ,primul
+fish,NN,pește
+five,CD,cinci
+floor,NN,podea
+fly,VBP,a zbura
+focus,NN,concentrare
+follow,VBP,a urma
+food,NN,mâncare
+foot,NN,picior
+for,IN,pentru
+force,NN,forță
+form,NN,formă
+former,JJ,fost
+forward,RB,înainte
+four,CD,patru
+free,JJ,liber
+friend,NN,prieten
+from,IN,de la
+front,NN,față
+full,JJ,plin
+fund,NN,fond
+future,NN,viitor
+game,NN,joc
+garden,NN,grădină
+general,JJ,general
+get,VBP,a obține
+girl,NN,fată
+give,VBP,a da
+glass,NN,pahar
+go,VBP,a merge
+goal,NN,obiectiv
 good,JJ,bun
+got,VBD,a primit
+government,NN,guvern
+great,JJ,grozav
+green,JJ,verde
+ground,NN,sol
+group,NN,grup
+grow,VBP,a crește
+guess,VBP,a ghici
+gun,NN,armă
+guy,NN,băiat
+hair,NN,păr
+half,DT,jumătate
+hand,NN,mână
+hang,VBP,a atârna
 happy,JJ,fericit
+hard,JJ,greu
+has,VBZ,are
 have,VBP,a avea
 he,PRP,el
+head,NN,cap
+health,NN,sănătate
+hear,VBP,a auzi
+heart,NN,inimă
+heat,NN,căldură
+heavy,JJ,greu
+help,NN,ajutor
+help,VBP,a ajuta
 Hello,NNP,salut
-house,NN,casa
+her,PRP$,ei
+here,RB,aici
+high,JJ,înalt
+him,PRP,el
+himself,PRP,el însuși
+his,PRP$,său
+history,NN,istorie
+hit,VBP,a lovi
+hold,VBP,a ține
+home,NN,acasă
+hope,NN,speranță
+hospital,NN,spital
+hot,JJ,fierbinte
+hour,NN,oră
+house,NN,casă
+how,WRB,cum
+however,RB,totuși
+huge,JJ,imens
+human,NN,om
 I,PRP,eu
+idea,NN,idee
+identify,VBP,a identifica
+if,IN,dacă
+image,NN,imagine
+imagine,VBP,a-și imagina
+impact,NN,impact
+important,JJ,important
+improve,VBP,a îmbunătăți
+in,IN,în
+include,VBP,a include
+increase,VBP,a crește
+indeed,RB,într-adevăr
+individual,NN,individ
+industry,NN,industrie
+information,NN,informație
+inside,IN,în interior
+instead,RB,în loc
+institution,NN,instituție
+interest,NN,interes
+international,JJ,internațional
+into,IN,în
+introduce,VBP,a introduce
+invest,VBP,a investi
+involve,VBP,a implica
 is,VBZ,este
+issue,NN,problemă
 it,PRP,el
+its,PRP$,lui
 java,NNP,java
-job,NN,loc de munca
-know,VBP,a sti
-life,NN,viata
-like,VBP,a placea
+job,NN,loc de muncă
+join,VBP,a se alătura
+just,RB,doar
+keep,VBP,a păstra
+key,NN,cheie
+kid,NN,copil
+kill,VBP,a ucide
+kind,NN,fel
+kitchen,NN,bucătărie
+know,VBP,a ști
+knowledge,NN,cunoaștere
+land,NN,teren
+language,NN,limbă
+large,JJ,mare
+last,JJ,ultimul
+late,RB,târziu
+later,RB,mai târziu
+laugh,VBP,a râde
+law,NN,lege
+lay,VBP,a așeza
+lead,VBP,a conduce
+learn,VBP,a învăța
+least,JJ,cel mai puțin
+leave,VBP,a pleca
+left,JJ,stânga
+less,JJ,mai puțin
+let,VBP,a lăsa
+letter,NN,scrisoare
+level,NN,nivel
+life,NN,viață
+light,NN,lumină
+like,VBP,a plăcea
+likely,RB,probabil
+line,NN,linie
+list,NN,listă
+listen,VBP,a asculta
 little,JJ,mic
+live,VBP,a trăi
+local,JJ,local
+long,JJ,lung
+look,VBP,a privi
+lose,VBP,a pierde
+lost,VBD,a pierdut
+lot,NN,mulțime
 love,VBP,a iubi
-man,NN,barbat
+low,JJ,scăzut
+main,JJ,principal
+maintain,VBP,a menține
+major,JJ,major
+make,VBP,a face
+man,NN,bărbat
+manage,VBP,a gestiona
+many,JJ,mulți
+market,NN,piață
+material,NN,material
+matter,NN,materie
+may,MD,poate
+me,PRP,mine
+mean,VBP,a însemna
+measure,NN,măsură
+media,NN,media
+meet,VBP,a întâlni
+member,NN,membru
+memory,NN,memorie
+message,NN,mesaj
+might,MD,s-ar putea
+military,NN,militare
+million,CD,milion
+mind,NN,minte
+minute,NN,minut
+miss,VBP,a rata
+model,NN,model
+moment,NN,moment
 money,NN,bani
+month,NN,lună
+more,JJ,mai mult
+morning,NN,dimineață
+most,DT,cel mai mult
+mother,NN,mamă
+move,VBP,a muta
+much,RB,mult
+music,NN,muzică
+must,MD,trebuie
 my,PRP$,mea
+name,NN,nume
+nation,NN,națiune
+national,JJ,național
+natural,JJ,natural
+near,IN,lângă
+necessarily,RB,neapărat
+need,VBP,a avea nevoie
+network,NN,rețea
+never,RB,niciodată
 new,JJ,nou
+news,NN,știri
+next,JJ,următorul
+night,NN,noapte
+no,DT,nu
+none,NN,niciunul
+nor,CC,nici
+normal,JJ,normal
+north,NN,nord
 not,RB,nu
+note,NN,notă
+nothing,NN,nimic
+now,RB,acum
+number,NN,număr
+occur,VBP,a avea loc
+of,IN,de
+off,RB,oprit
+offer,VBP,a oferi
+office,NN,birou
+often,RB,des
+oh,UH,oh
 old,JJ,vechi
+on,IN,pe
+once,RB,odată
+one,CD,unu
+only,RB,numai
+open,VBP,a deschide
+operation,NN,operațiune
+opportunity,NN,oportunitate
+or,CC,sau
+order,NN,comandă
+organization,NN,organizație
+other,DT,alt
+others,NNS,ceilalți
+out,RB,afară
+outside,IN,în afara
+over,IN,peste
+own,VBP,a deține
+owner,NN,proprietar
+page,NN,pagină
+pain,NN,durere
+paper,NN,hârtie
+parent,NN,părinte
+part,NN,parte
+particular,JJ,particular
+particularly,RB,în special
+party,NN,petrecere
+pass,VBP,a trece
+past,JJ,trecut
+patient,NN,pacient
+pattern,NN,model
+pay,VBP,a plăti
+peace,NN,pace
 people,NN,oameni
+per,IN,pe
+perform,VBP,a îndeplini
+period,NN,perioadă
+person,NN,persoană
+personal,JJ,personal
+phone,NN,telefon
+physical,JJ,fizic
+pick,VBP,a alege
+picture,NN,imagine
+piece,NN,bucată
 place,NN,loc
+plan,NN,plan
+plant,NN,plantă
+play,VBP,a juca
+point,NN,punct
+police,NN,poliție
+policy,NN,politică
+political,JJ,politic
+poor,JJ,sărac
+position,NN,poziție
+possible,JJ,posibil
+power,NN,putere
+practice,NN,practică
+prepare,VBP,a pregăti
+present,JJ,prezent
+president,NN,președinte
+press,VBP,a presa
+pressure,NN,presiune
+price,NN,preț
+private,JJ,privat
+probably,RB,probabil
+problem,NN,problemă
+process,NN,proces
+produce,VBP,a produce
+product,NN,produs
+program,NN,program
+project,NN,proiect
+protect,VBP,a proteja
+provide,VBP,a furniza
+public,JJ,public
+pull,VBP,a trage
+purpose,NN,scop
+push,VBP,a împinge
+put,VBP,a pune
+quality,NN,calitate
+question,NN,întrebare
+quick,JJ,rapid
+quickly,RB,repede
+quite,RB,destul de
+race,NN,cursă
+radio,NN,radio
+range,NN,gamă
+rate,NN,rată
+rather,RB,mai degrabă
+reach,VBP,a ajunge
 read,VBP,a citi
-runs,VBZ,alearga
+ready,JJ,gata
+real,JJ,real
+really,RB,cu adevărat
+reason,NN,motiv
+receive,VBP,a primi
+recent,JJ,recent
+recognize,VBP,a recunoaște
+record,NN,înregistrare
+red,JJ,roșu
+reduce,VBP,a reduce
+reflect,VBP,a reflecta
+region,NN,regiune
+relate,VBP,a se raporta
+relation,NN,relație
+relationship,NN,relație
+remain,VBP,a rămâne
+remember,VBP,a-și aminti
+remove,VBP,a elimina
+report,NN,raport
+represent,VBP,a reprezenta
+require,VBP,a necesita
+research,NN,cercetare
+resource,NN,resursă
+respond,VBP,a răspunde
+response,NN,răspuns
+rest,NN,rest
+result,NN,rezultat
+return,VBP,a se întoarce
+reveal,VBP,a dezvălui
+rich,JJ,bogat
+right,JJ,drept
+rise,VBP,a se ridica
+risk,NN,risc
+road,NN,drum
+rock,NN,piatră
+role,NN,rol
+room,NN,cameră
+rule,NN,regulă
 run,NN,alergare
 run,VB,a alerga
 run,VBP,a alerga
+runs,VBZ,aleargă
+safe,JJ,sigur
+same,JJ,același
+save,VBP,a salva
+say,VBP,a zice
+scene,NN,scenă
+school,NN,școală
+science,NN,știință
+security,NN,securitate
+see,VBP,a vedea
+seek,VBP,a căuta
+seem,VBP,a părea
+sell,VBP,a vinde
+send,VBP,a trimite
+sense,NN,simț
+series,NN,serie
+serious,JJ,serios
+serve,VBP,a servi
+service,NN,serviciu
+set,VBP,a seta
+seven,CD,șapte
+several,JJ,câțiva
+shake,VBP,a scutura
+share,VBP,a împărtăși
 she,PRP,ea
+short,JJ,scurt
+should,MD,ar trebui
+show,VBP,a arăta
+side,NN,parte
+sign,NN,semn
+significant,JJ,semnificativ
+similar,JJ,similar
+simple,JJ,simplu
+simply,RB,pur și simplu
+since,IN,de când
+sing,VBP,a cânta
+single,JJ,singur
+sister,NN,soră
+sit,VBP,a sta
+site,NN,site
+situation,NN,situație
+six,CD,șase
+size,NN,mărime
+skill,NN,abilitate
+sleep,VBP,a dormi
 small,JJ,mic
-table,NN,masa
-table,VB,a amana
+social,JJ,social
+society,NN,societate
+some,DT,niște
+someone,NN,cineva
+something,NN,ceva
+sometimes,RB,uneori
+son,NN,fiu
+soon,RB,curând
+sort,NN,fel
+sound,NN,sunet
+source,NN,sursă
+south,NN,sud
+space,NN,spațiu
+speak,VBP,a vorbi
+special,JJ,special
+specific,JJ,specific
+spend,VBP,a cheltui
+sport,NN,sport
+spring,NN,primăvară
+staff,NN,personal
+stage,NN,scenă
+stand,VBP,a sta în picioare
+standard,NN,standard
+start,VBP,a începe
+state,NN,stat
+statement,NN,declarație
+station,NN,stație
+stay,VBP,a sta
+step,NN,pas
+still,RB,încă
+stock,NN,stoc
+stop,VBP,a opri
+store,NN,magazin
+story,NN,poveste
+strategy,NN,strategie
+street,NN,stradă
+strong,JJ,puternic
+structure,NN,structură
+student,NN,student
+study,VBP,a studia
+stuff,NN,lucru
+style,NN,stil
+subject,NN,subiect
+success,NN,succes
+successful,JJ,de succes
+such,DT,un astfel de
+suggest,VBP,a sugera
+summer,NN,vară
+support,VBP,a susține
+sure,JJ,sigur
+system,NN,sistem
+table,NN,masă
+table,VB,a amâna
+take,VBP,a lua
 talk,VBP,a vorbi
+task,NN,sarcină
+team,NN,echipă
+technology,NN,tehnologie
+tell,VBP,a spune
+ten,CD,zece
+term,NN,termen
+test,NN,test
+than,IN,decât
+thank,VBP,a mulțumi
+that,DT,acel
 the,DT,cel
+their,PRP$,lor
+them,PRP,ei
+then,RB,apoi
+theory,NN,teorie
+there,RB,acolo
+therefore,RB,prin urmare
+these,DT,acești
 they,PRP,ei
-think,VBP,a gandi
+thing,NN,lucru
+think,VBP,a gândi
+third,JJ,al treilea
 this,DT,aceasta
+those,DT,acele
+though,IN,deși
+thought,NN,gând
+three,CD,trei
+through,IN,prin
+throughout,IN,pe tot parcursul
 time,NN,timp
 to,TO,a
+today,NN,astăzi
+together,RB,împreună
+tonight,NN,diseară
+too,RB,prea
+top,NN,vârf
+total,NN,total
+toward,IN,către
+town,NN,oraș (mic)
+trade,NN,comerț
+training,NN,instruire
+travel,VBP,a călători
+treat,VBP,a trata
+tree,NN,copac
+trial,NN,proces
+true,JJ,adevărat
+truth,NN,adevăr
+try,VBP,a încerca
+turn,VBP,a se întoarce
+TV,NN,televizor
+two,CD,doi
+type,NN,tip
+under,IN,sub
+understand,VBP,a înțelege
+unit,NN,unitate
+until,IN,până când
 up,RB,sus
+upon,IN,pe
 us,PRP,noi
 use,VBP,a folosi
+value,NN,valoare
+various,JJ,diferit
 very,RB,foarte
+victim,NN,victimă
+view,NN,vedere
+violence,NN,violență
+visit,VBP,a vizita
+voice,NN,voce
+vote,VBP,a vota
+wait,VBP,a aștepta
 walk,VBP,a merge
+wall,NN,perete
 want,VBP,a vrea
+war,NN,război
+was,VBD,era
+watch,VBP,a privi
+water,NN,apă
+way,NN,cale
 we,PRP,noi
-work,NN,munca
+weapon,NN,armă
+wear,VBP,a purta
+week,NN,săptămână
+weight,NN,greutate
+well,RB,bine
+west,NN,vest
+what,WP,ce
+whatever,WP,orice
+when,WRB,când
+where,WRB,unde
+whether,IN,dacă
+which,WDT,care
+while,IN,în timp ce
+white,JJ,alb
+who,WP,cine
+whole,JJ,întreg
+whom,WP,pe cine
+why,WRB,de ce
+wide,JJ,larg
+wife,NN,soție
+will,MD,va
+win,VBP,a câștiga
+window,NN,fereastră
+with,IN,cu
+within,IN,în interiorul
+without,IN,fără
+woman,NN,femeie
+wonder,VBP,a se întreba
+word,NN,cuvânt
+work,NN,muncă
 work,VBP,a lucra
 world,NN,lume
+worry,VBP,a se îngrijora
+would,MD,ar
+write,VBP,a scrie
+wrong,JJ,greșit
 year,NN,an
+yes,UH,da
+yet,RB,totuși
 you,PRP,tu
-young,JJ,tanar
+young,JJ,tânăr
+your,PRP$,tău
 .,.,.
 ,,CC,,
 :,:,:
