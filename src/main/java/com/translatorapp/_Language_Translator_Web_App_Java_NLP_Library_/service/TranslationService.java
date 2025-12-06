@@ -2,7 +2,9 @@ package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service
 
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.Map;
 
+import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.exception.TranslationValidationException;
 import jakarta.annotation.PostConstruct;
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,63 +24,22 @@ public class TranslationService {
 
     private final TranslationDictionary translationDictionary;
 
-    @Value("classpath:token/en-token.bin")
-    private Resource modelResource;
+    private final Map<String, TokenizerME> tokenizerMap;
+    private final Map<String, POSTaggerME> posTaggerMap;
+    private final Map<String, DictionaryLemmatizer> lemmatizerMap;
 
-    @Value("classpath:pos/en-pos.bin")
-    private Resource posModelResource;
-
-
-    @Value("classpath:models/en-lemmatizer.dict")
-    private Resource lemmatizerModelResource;
-
-    private TokenizerME tokenizer;
-    private POSTaggerME posTagger;
-    private DictionaryLemmatizer lemmatizer;
+    private String last_subject = null;
 
     @Autowired
-    public TranslationService(TranslationDictionary translationDictionary){
+    public TranslationService(TranslationDictionary translationDictionary,
+                              Map<String,TokenizerME> tokenizerMap,
+                              Map<String,POSTaggerME> posTaggerMap,
+                              Map<String,DictionaryLemmatizer> lemmatizerMap
+                              ){
         this.translationDictionary = translationDictionary;
-    }
-
-
-    @PostConstruct
-    public void init() {
-        try (InputStream modelIn = modelResource.getInputStream()) {
-            TokenizerModel model = new TokenizerModel(modelIn);
-            this.tokenizer = new TokenizerME(model);
-            System.out.println("--- Modelul OpenNLP '" + modelResource.getFilename() + "' a fost încărcat cu succes! ---");
-        } catch (IOException e) {
-            throw new IllegalStateException("Eroare I/O la Tokenizer (Fișier inaccesibil sau corupt).", e);
-        } catch (Exception e) {
-            throw new IllegalStateException("Eroare critică necunoscută la inițializarea Tokenizer.", e);
-        }
-
-        try(InputStream modelIn = posModelResource.getInputStream()){
-            if(modelIn == null){
-                throw new IllegalStateException("Fatal error : Resursa POS nu a fost gasita ");
-            }
-            POSModel model = new POSModel(modelIn);
-            this.posTagger = new POSTaggerME(model);
-            System.out.println("Modelul OpenNLP POS Tagger a fost incarcat cu succes");
-        }catch (IOException e){
-            throw new IllegalStateException("Eroare la incarcarea modelului OpenNLP POS Tagger");
-        }catch (Exception e){
-            throw new IllegalStateException("Erroare critica necunoscuta la POS Tagger");
-        }
-
-
-        try(InputStream modelIn = getClass().getResourceAsStream("/models/en-lemmatizer.dict")){
-            if(modelIn == null){
-                // Dacă stream-ul este null, fișierul lipsește din Classpath!
-                throw new IllegalStateException("FATAL: Resursa 'en-lemmatizer.dict' nu a fost găsita în src/main/resources/models/. Verificați calea!");
-            }
-            lemmatizer = new DictionaryLemmatizer(modelIn);
-            System.out.println("Lemmatizer a fost integrat cu succes");
-        }catch (Exception e){
-            // Aruncăm excepția reală
-            throw new IllegalStateException("Eroare la incarcarea Lemmatizer-ului. Verificati formatul fisierului .dict", e);
-        }
+        this.tokenizerMap = tokenizerMap;
+        this.posTaggerMap = posTaggerMap;
+        this.lemmatizerMap = lemmatizerMap;
     }
 
     private String conjugaVerb(String verb, String subject){
@@ -142,12 +103,23 @@ public class TranslationService {
 
         System.out.println("Executa logica de traducere complexa (nu din cache)");
 
-        String[] tokens = tokenizer.tokenize(sourceText);
-        String[] tags = posTagger.tag(tokens);
-        String[] lemmas = lemmatizer.lemmatize(tokens, tags);
+        String sourceLangKey = sourceLang.toLowerCase();
+
+        if(!tokenizerMap.containsKey(sourceLangKey)){
+
+            throw new TranslationValidationException("limba sursa '" + sourceLang + "' nu e suportata momentan");
+        }
+
+        TokenizerME currentTokenizer = tokenizerMap.get(sourceLangKey);
+        POSTaggerME currentPOSTagger = posTaggerMap.get(sourceLangKey);
+        DictionaryLemmatizer currentLemmatizer = lemmatizerMap.get(sourceLangKey);
+
+        String[] tokens = currentTokenizer.tokenize(sourceText);
+        String[] tags = currentPOSTagger.tag(tokens);
+        String[] lemmas = currentLemmatizer.lemmatize(tokens, tags);
 
         StringBuilder resultBuilder = new StringBuilder();
-        String last_subject = null;
+        last_subject = null;
 
         for (int i = 0; i < tokens.length; i++) {
             String token = tokens[i];
