@@ -1,0 +1,91 @@
+arbeiten,VBP,a lucra
+Auto,NN,mașină
+alt,JJ,vechi
+an,IN,"la, pe"
+antworten,VBP,a răspunde
+fragen,VBP,a întreba
+beginnen,VBP,a începe
+bekommen,VBP,a primi
+Berg,NN,munte
+besser,JJ,mai bun
+brauchen,VBP,a avea nevoie
+bringen,VBP,a aduce
+Computer,NN,computer
+denn,CC,căci
+Deutschland,NNP,Germania
+dort,RB,acolo
+durch,IN,prin
+eigen,JJ,propriu
+Eltern,NNS,părinți
+Ende,NN,sfârșit
+Entscheidung,NN,decizie
+erklären,VBP,a explica
+essen,VBP,a mânca
+Familie,NN,familie
+Fehler,NN,greșeală
+finden,VBP,a găsi
+Firma,NN,firmă
+fordern,VBP,a cere
+Freund,NN,prieten
+Gedanke,NN,gând
+geben,VBP,a da
+Gefühl,NN,sentiment
+gehören,VBP,a aparține
+gerne,RB,cu plăcere
+Geschichte,NN,"istorie, poveste"
+gestern,RB,ieri
+gleich,JJ,"la fel, egal"
+Gott,NNP,Dumnezeu
+halten,VBP,a ține
+helfen,VBP,a ajuta
+immer,RB,mereu
+Information,NN,informație
+interessant,JJ,interesant
+jedoch,RB,totuși
+kalt,JJ,rece
+kaufen,VBP,a cumpăra
+Kopf,NN,cap
+kürzlich,RB,recent
+Land,NN,țară
+lassen,VBP,a lăsa
+Leben,NN,viață
+lesen,VBP,a citi
+Lösung,NN,soluție
+Mädchen,NN,fată
+Mann,NN,bărbat
+mehr,JJ,mai mult
+Mensch,NN,om
+Minuten,NNS,minute
+möglich,JJ,posibil
+nehmen,VBP,a lua
+nichts,NN,nimic
+noch,RB,încă
+offen,JJ,deschis
+öffentlich,JJ,public
+Ort,NN,loc
+Problem,NN,problemă
+Punkt,NN,punct
+richtig,JJ,corect
+sauber,JJ,curat
+Schule,NN,școală
+sehen,VBP,a vedea
+sehr,RB,foarte
+setzen,VBP,"a pune, a așeza"
+sicher,JJ,sigur
+spielen,VBP,a juca
+sprechen,VBP,a vorbi
+Stadt,NN,oraș
+Stunde,NN,oră
+Teil,NN,parte
+tun,VBP,a face
+unterscheiden,VBP,a distinge
+verkaufen,VBP,a vinde
+versuchen,VBP,a încerca
+viel,JJ,mult
+wichtig,JJ,important
+wissen,VBP,a ști
+Wort,NN,cuvânt
+zeigen,VBP,a arăta
+ziehen,VBP,a trage
+zusammen,RB,împreună
+zweimal,RB,de două ori

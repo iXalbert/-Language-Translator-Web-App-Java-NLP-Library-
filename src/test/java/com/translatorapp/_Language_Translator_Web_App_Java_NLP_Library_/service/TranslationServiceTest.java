@@ -4,6 +4,7 @@ import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.postag.POSTaggerME;
 
+import opennlp.tools.tokenize.TokenizerModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
@@ -38,9 +41,13 @@ public class TranslationServiceTest {
 
         ReflectionTestUtils.setField(translationService,"translationDictionary", mockDictonary);
 
-        ReflectionTestUtils.setField(translationService, "tokenizer", mockTokenizer);
-        ReflectionTestUtils.setField(translationService, "posTagger", mockPosTagger);
-        ReflectionTestUtils.setField(translationService, "lemmatizer", mockLemmatizer);
+        Map<String, TokenizerME> mockTokenizerMap = Map.of("en", mockTokenizer);
+        Map<String, POSTaggerME> mockPosTaggerMap = Map.of("en", mockPosTagger);
+        Map<String, DictionaryLemmatizer> mockLemmatizerMap = Map.of("en", mockLemmatizer);
+
+        ReflectionTestUtils.setField(translationService, "tokenizerMap", mockTokenizerMap);
+        ReflectionTestUtils.setField(translationService, "posTaggerMap", mockPosTaggerMap);
+        ReflectionTestUtils.setField(translationService, "lemmatizerMap", mockLemmatizerMap);
     }
 
     @Test
