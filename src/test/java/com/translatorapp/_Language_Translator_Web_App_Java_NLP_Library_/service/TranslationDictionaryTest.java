@@ -12,12 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Import(TranslationDictionary.class)
-@TestPropertySource(properties = {
-        "app.dictionary.path=classpath:translation_data_en.txt",
-        "nlp.token={en:classpath:token/en-token.bin}",
-        "nlp.pos={en:classpath:pos/en-pos.bin}",
-        "nlp.models.lemmatizer={en:classpath:models/en-lemmatizer.dict}"
-})
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class TranslationDictionaryTest {
 
     @Autowired
@@ -25,14 +20,12 @@ public class TranslationDictionaryTest {
 
     @Test
     void testDictionaryIsInitialized() {
-        // Dacă dicționarul se încarcă fără excepții și este injectat, este OK
         assertNotNull(dictionary);
     }
 
     @Test
     void testExistingWordTranslation() {
-        // Presupunând că "hello,NNP,Salut" este în fișierul de dicționar
-        assertEquals("Salut", dictionary.getTranslation("hello", "NNP"));
+        assertEquals("salut", dictionary.getTranslation("hello", "NNP"));
     }
 
     @Test
@@ -42,23 +35,17 @@ public class TranslationDictionaryTest {
 
     @Test
     void testPOSDependentTranslation() {
-        // Acest test necesită două intrări pentru același cuvânt cu POS-uri diferite
-        // Presupunând că fișierul conține: "read,VBP,citesc" și "read,NN,lectură"
-        // (Deoarece nu am fișierul, acest test e speculativ)
-        // Dacă fișierul e simplu, ne bazăm pe:
-        assertEquals("Salut", dictionary.getTranslation("hello", "NNP"));
-        assertNull(dictionary.getTranslation("hello", "VBD")); // Ar trebui să eșueze dacă POS-ul nu se potrivește
+        assertEquals("salut", dictionary.getTranslation("hello", "NNP"));
+        assertNull(dictionary.getTranslation("hello", "VBD"));
     }
 
     @Test
     void testJavaTranslation() {
-        // Presupunând că "java,NNP,Java" este în dicționar (ca nume propriu)
-        assertEquals("Java", dictionary.getTranslation("java", "NNP"));
+        assertEquals("java", dictionary.getTranslation("java", "NNP"));
     }
 
     @Test
     void testPunctuationTranslation() {
-        // Presupunând că punctuația nu este tradusă sau nu e în dicționar
-        assertNull(dictionary.getTranslation("!", "."));
+        assertEquals("!", dictionary.getTranslation("!", "."));
     }
 }

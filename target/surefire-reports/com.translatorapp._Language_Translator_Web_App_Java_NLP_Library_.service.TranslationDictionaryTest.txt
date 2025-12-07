@@ -1,24 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest
-com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest -- Time elapsed: 0.006 s <<< ERROR!
-java.lang.IllegalStateException: Found multiple @SpringBootConfiguration annotated classes [Generic bean: class [com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.LanguageTranslatorWebAppJavaNlpLibraryApplicationTests]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodNames=null; destroyMethodNames=null; defined in file [/Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/target/test-classes/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/LanguageTranslatorWebAppJavaNlpLibraryApplicationTests.class], Generic bean: class [com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.LanguageTranslatorWebAppJavaNlpLibraryApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodNames=null; destroyMethodNames=null; defined in file [/Users/albertrosca/Desktop/-Language-Translator-Web-App-Java-NLP-Library-/target/classes/com/translatorapp/_Language_Translator_Web_App_Java_NLP_Library_/LanguageTranslatorWebAppJavaNlpLibraryApplication.class]]
-	at org.springframework.util.Assert.state(Assert.java:97)
-	at org.springframework.boot.test.context.AnnotatedClassFinder.scanPackage(AnnotatedClassFinder.java:92)
-	at org.springframework.boot.test.context.AnnotatedClassFinder.findFromPackage(AnnotatedClassFinder.java:82)
-	at org.springframework.boot.test.context.AnnotatedClassFinder.findFromClass(AnnotatedClassFinder.java:68)
-	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.findConfigurationClass(SpringBootTestContextBootstrapper.java:245)
-	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.getOrFindConfigurationClasses(SpringBootTestContextBootstrapper.java:233)
-	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.processMergedContextConfiguration(SpringBootTestContextBootstrapper.java:150)
-	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:354)
-	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildDefaultMergedContextConfiguration(AbstractTestContextBootstrapper.java:270)
-	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:218)
-	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildTestContext(AbstractTestContextBootstrapper.java:108)
-	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.buildTestContext(SpringBootTestContextBootstrapper.java:111)
-	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:129)
-	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:113)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.getTestContextManager(SpringExtension.java:366)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeAll(SpringExtension.java:131)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.681 s -- in com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service.TranslationDictionaryTest

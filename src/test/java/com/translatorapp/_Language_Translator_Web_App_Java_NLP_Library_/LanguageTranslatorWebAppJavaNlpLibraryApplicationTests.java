@@ -1,15 +1,18 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
-@SpringBootApplication
-@EnableCaching
-public class LanguageTranslatorWebAppJavaNlpLibraryApplicationTests {
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    public static void main(String[] args) {
-        SpringApplication.run(LanguageTranslatorWebAppJavaNlpLibraryApplication.class, args);
+@SpringBootTest
+@TestPropertySource(locations = "classpath:application-test.properties")
+class LanguageTranslatorWebAppJavaNlpLibraryApplicationTests {
+
+    @Test
+    void contextLoads() {
+        assertTrue(true);
     }
 
 }
