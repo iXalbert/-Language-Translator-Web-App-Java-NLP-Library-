@@ -15,7 +15,7 @@ public class TranslationDictionary {
 
     private final Map<String, String> dictionary = new HashMap<>();
 
-    @Value("${app.dictionary.path.en}")
+    @Value("${app.dictionary.path}") // Folosește calea scurtă
     private Resource dictionaryFile;
 
     private String createKey(String word, String posTag){
@@ -65,16 +65,6 @@ public class TranslationDictionary {
     }
 
     public String getTranslation(String cleanWord, String posTag){
-
-        /*
-        String translated = dictionary.get(createKey(cleanWord,posTag));
-
-        if(translated == null){
-            translated = dictionary.get(cleanWord);
-        }
-
-        return translated;
-        */
         return dictionary.get(createKey(cleanWord, posTag));
     }
 }

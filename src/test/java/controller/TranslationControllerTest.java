@@ -2,7 +2,6 @@ package controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.LanguageTranslatorWebAppJavaNlpLibraryApplication;
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.controller.TranslationController;
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.exception.GlobalExceptionHandler;
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.model.TranslationRequest;
@@ -16,17 +15,17 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TranslationController.class)
-@ContextConfiguration(classes = {TranslationController.class, LanguageTranslatorWebAppJavaNlpLibraryApplication.class})
 @Import(GlobalExceptionHandler.class)
+@ContextConfiguration(classes = {
+        com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.LanguageTranslatorWebAppJavaNlpLibraryApplication.class
+})
 public class TranslationControllerTest {
 
     @Autowired
@@ -49,8 +48,8 @@ public class TranslationControllerTest {
         when(mockTranslationService.performTranslation(any(),any(),any())).thenReturn(expectedTranslation);
 
         mockMvc.perform(MockMvcRequestBuilders.post(API_URL)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.translatedText").value(expectedTranslation))
                 .andExpect(jsonPath("$.statusMessage").value("Traducerea efectuata cu succes"));
