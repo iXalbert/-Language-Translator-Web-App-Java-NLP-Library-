@@ -546,7 +546,7 @@ quickly,RB,repede
 quite,RB,destul de
 race,NN,cursă
 radio,NN,radio
-ran,VBD,a fugi
+run,VBD,a fugi
 range,NN,gamă
 rate,NN,rată
 rather,RB,mai degrabă
