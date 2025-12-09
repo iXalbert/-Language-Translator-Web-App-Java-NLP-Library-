@@ -593,7 +593,7 @@ rule,NN,regulă
 run,NN,alergare
 run,VB,a alerga
 run,VBP,a alerga
-runs,VBZ,aleargă
+run,VBZ,aleargă
 safe,JJ,sigur
 same,JJ,același
 save,VBP,a salva
@@ -603,8 +603,8 @@ school,NN,școală
 science,NN,știință
 security,NN,securitate
 see,VBP,a vedea
-seek,VBP,a căuta
-seem,VBP,a părea
+see,VBP,a căuta
+see,VBP,a părea
 sell,VBP,a vinde
 send,VBP,a trimite
 sense,NN,simț
@@ -821,3 +821,185 @@ your,PRP$,tău
 ;,;,;
 ?,?,?
 !,.,!
+address,NN,adresă
+access,NN,acces
+account,NN,cont
+achievement,NN,realizare
+advice,NN,sfat
+agency,NN,agenție
+agreement,NN,acord
+analysis,NN,analiză
+approach,NN,abordare
+approval,NN,aprobare
+argument,NN,argument
+assessment,NN,evaluare
+asset,NN,activ
+assistance,NN,asistență
+assumption,NN,presupunere
+atmosphere,NN,atmosferă
+attempt,NN,încercare
+award,NN,premiu
+background,NN,fundal
+balance,NN,echilibru
+behavior,NN,comportament
+belief,NN,credință
+challenge,NN,provocare
+character,NN,caracter
+conference,NN,conferință
+connection,NN,conexiune
+consumer,NN,consumator
+contact,NN,contact
+conversation,NN,conversație
+decision,NN,decizie
+description,NN,descriere
+difficulty,NN,dificultate
+distribution,NN,distribuție
+drama,NN,dramă
+drawing,NN,desen
+emotion,NN,emoție
+evaluation,NN,evaluare
+excitement,NN,emoție
+expectation,NN,așteptare
+feeling,NN,sentiment
+freedom,NN,libertate
+growth,NN,creștere
+investment,NN,investiție
+involvement,NN,implicare
+leadership,NN,leadership
+management,NN,management
+meaning,NN,semnificație
+method,NN,metodă
+motivation,NN,motivație
+painting,NN,pictură
+performance,NN,performanță
+permission,NN,permisiune
+possibility,NN,posibilitate
+preparation,NN,pregătire
+presence,NN,prezență
+proposal,NN,propunere
+protection,NN,protecție
+reality,NN,realitate
+recognition,NN,recunoaștere
+relationship,NN,relație
+release,NN,lansare
+revolution,NN,revoluție
+savings,NNS,economii
+selection,NN,selecție
+situation,NN,situație
+strength,NN,putere
+understanding,NN,înțelegere
+weakness,NN,slăbiciune
+wealth,NN,bogăție
+achieve,VBP,a realiza
+admit,VBP,a admite
+affect,VBP,a afecta
+afford,VBP,a-și permite
+apologize,VBP,a cere scuze
+appreciate,VBP,a aprecia
+arrange,VBP,a aranja
+attend,VBP,a participa
+collect,VBP,a colecta
+conduct,VBP,a conduce
+confirm,VBP,a confirma
+connect,VBP,a conecta
+contact,VBP,a contacta
+contribute,VBP,a contribui
+convince,VBP,a convinge
+defend,VBP,a apăra
+deliver,VBP,a livra
+deny,VBP,a nega
+depend,VBP,a depinde
+describe,VBP,a descrie
+destroy,VBP,a distruge
+determine,VBP,a determina
+disappear,VBP,a dispărea
+educate,VBP,a educa
+emphasize,VBP,a sublinia
+encourage,VBP,a încuraja
+engage,VBP,a angaja
+inform,VBP,a informa
+interrupt,VBP,a întrerupe
+mention,VBP,a menționa
+organize,VBP,a organiza
+participate,VBP,a participa
+publish,VBP,a publica
+realize,VBP,a realiza
+release,VBP,a elibera
+request,VBP,a solicita
+separate,VBP,a separa
+solve,VBP,a rezolva
+teach,VBP,a preda
+warn,VBP,a avertiza
+take,VBD,a lua
+become,VBD,a deveni
+think,VBD,a gândi
+go,VBD,a merge
+find,VBD,a găsi
+see,VBD,a vedea
+give,VBD,a da
+know,VBD,a ști
+take,VBZ,ia
+become,VBZ,devine
+think,VBZ,gândește
+go,VBZ,merge
+find,VBZ,găsește
+see,VBZ,vede
+give,VBZ,dă
+know,VBZ,știe
+additional,JJ,suplimentar
+amazing,JJ,uimitor
+appropriate,JJ,adecvat
+careful,JJ,atent
+central,JJ,central
+comfortable,JJ,confortabil
+confident,JJ,încrezător
+conscious,JJ,conștient
+continuous,JJ,continuu
+critical,JJ,critic
+democratic,JJ,democratic
+detailed,JJ,detaliat
+disabled,JJ,cu dizabilități
+dominant,JJ,dominant
+effective,JJ,eficient
+electronic,JJ,electronic
+essential,JJ,esențial
+familiar,JJ,familiar
+financial,JJ,financiar
+historical,JJ,istoric
+ideal,JJ,ideal
+independent,JJ,independent
+internal,JJ,intern
+literary,JJ,literar
+minimum,JJ,minim
+moral,JJ,moral
+mutual,JJ,reciproc
+necessary,JJ,necesar
+official,JJ,oficial
+opposite,JJ,opus
+powerful,JJ,puternic
+practical,JJ,practic
+precise,JJ,precis
+preliminary,JJ,preliminar
+professional,JJ,profesional
+reasonable,JJ,rezonabil
+reliable,JJ,de încredere
+responsible,JJ,responsabil
+severe,JJ,sever
+technical,JJ,tehnic
+typical,JJ,tipic
+unwilling,JJ,nevoinic
+visual,JJ,vizual
+immediately,RB,imediat
+initially,RB,inițial
+largely,RB,în mare parte
+mainly,RB,în principal
+merely,RB,doar
+obviously,RB,evident
+occasionally,RB,ocazional
+partly,RB,parțial
+previously,RB,anterior
+rapidly,RB,rapid
+somehow,RB,cumva
+totally,RB,total
+usually,RB,de obicei
+widely,RB,pe scară largă
