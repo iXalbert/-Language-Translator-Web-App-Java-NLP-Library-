@@ -1,23 +1,15 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service;
 
-import java.io.InputStream;
-import java.io.IOException;
 import java.util.Map;
 
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.exception.TranslationValidationException;
-import jakarta.annotation.PostConstruct;
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
-
 import opennlp.tools.tokenize.TokenizerME;
-import opennlp.tools.tokenize.TokenizerModel;
 
 @Service
 public class TranslationService {
@@ -35,12 +27,46 @@ public class TranslationService {
                               Map<String,TokenizerME> tokenizerMap,
                               Map<String,POSTaggerME> posTaggerMap,
                               Map<String,DictionaryLemmatizer> lemmatizerMap
-                              ){
+    ){
         this.translationDictionary = translationDictionary;
         this.tokenizerMap = tokenizerMap;
         this.posTaggerMap = posTaggerMap;
         this.lemmatizerMap = lemmatizerMap;
     }
+
+    private String getAuxiliary(String subject) {
+        switch (subject.toLowerCase()) {
+            case "i": return "am";
+            case "you": return "ai";
+            case "he":
+            case "she":
+            case "it": return "a";
+            case "we": return "am";
+            case "they": return "au";
+            default: return "";
+        }
+    }
+
+    private String getPastParticiple(String verbInfinitive) {
+        if (!verbInfinitive.startsWith("a ")) {
+            return verbInfinitive;
+        }
+        String stem = verbInfinitive.substring(2).trim();
+
+        if (stem.endsWith("a")) {
+            return stem.substring(0, stem.length() - 1) + "at";
+        }
+
+        if (stem.endsWith("i")) {
+            if (stem.equals("fugi")) {
+                return "fugit";
+            }
+            return stem.substring(0, stem.length() - 1) + "it";
+        }
+
+        return stem;
+    }
+
 
     private String conjugaVerb(String verb, String subject){
 
@@ -156,7 +182,17 @@ public class TranslationService {
 
                 if (translatedWord == null) {
                     translatedWord = token;
-                } else if (tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null) {
+                }
+
+                else if (tag.startsWith("VBD") && translatedWord.startsWith("a ") && last_subject != null) {
+
+                    String participle = getPastParticiple(translatedWord);
+                    String auxiliary = getAuxiliary(last_subject);
+
+                    translatedWord = auxiliary + " " + participle;
+                }
+
+                else if (tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null) {
 
                     translatedWord = conjugaVerb(translatedWord, last_subject);
                 }

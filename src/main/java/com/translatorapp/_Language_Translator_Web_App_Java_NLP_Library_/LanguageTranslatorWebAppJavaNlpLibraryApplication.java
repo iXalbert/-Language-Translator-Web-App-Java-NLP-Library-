@@ -13,3 +13,22 @@ public class LanguageTranslatorWebAppJavaNlpLibraryApplication {
 	}
 
 }
+
+//hello are probleme
+//go are probleme
+//play
+//friends
+//are
+//ea
+//ask
+//is
+//wait
+//study
+//was
+//factors
+//was
+//hard
+//found
+//began
+
+//task maine sa fac sa faca traducerea cuvintelor cu plural si a celor de sus
