@@ -1,7 +1,6 @@
 package com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.service;
 
 import java.util.Map;
-
 import com.translatorapp._Language_Translator_Web_App_Java_NLP_Library_.exception.TranslationValidationException;
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,12 +35,19 @@ public class TranslationService {
 
     private String getAuxiliary(String subject) {
         switch (subject.toLowerCase()) {
-            case "i": return "am";
-            case "you": return "ai";
+            case "i":
+            case "ich": return "am";
+            case "you":
+            case "du":
+            case "ihr": return "ai";
             case "he":
             case "she":
-            case "it": return "a";
-            case "we": return "am";
+            case "it":
+            case "er":
+            case "sie":
+            case "es": return "a";
+            case "we":
+            case "wir": return "am";
             case "they": return "au";
             default: return "";
         }
@@ -68,7 +74,7 @@ public class TranslationService {
     }
 
 
-    private String conjugaVerb(String verb, String subject){
+    private String conjugaVerb(String verb, String subject, String sourceLang){
 
         if(!verb.startsWith("a ")){
             return verb;
@@ -90,23 +96,31 @@ public class TranslationService {
         switch (subject.toLowerCase()){
 
             case "i":
+            case "eu":
+            case "ich":
                 if(stem.endsWith("g") || stem.endsWith("c")){
                     return stem;
                 }
                 return stem + "u";
 
             case "you":
+            case "du":
+            case "ihr":
                 return stem + "i";
 
             case "he":
             case "she":
             case "it":
+            case "er":
+            case "sie":
+            case "es":
                 if(baseVerb.endsWith("a")){
                     return stem + "a";
                 }
                 return baseVerb;
 
             case "we":
+            case "wir":
                 return stem + "m";
 
             case "they":
@@ -122,17 +136,15 @@ public class TranslationService {
     @Cacheable("translations")
     public String performTranslation(String sourceText, String sourceLang, String targetLang) {
 
-
         if (sourceText == null || sourceText.trim().isEmpty()) {
             return "Te rog să introduci text pentru traducere.";
         }
 
-        System.out.println("Executa logica de traducere complexa (nu din cache)");
+        System.out.println("Executa logica de traducere complexa (nu din cache) pentru " + sourceLang.toUpperCase() + " -> " + targetLang.toUpperCase());
 
         String sourceLangKey = sourceLang.toLowerCase();
 
         if(!tokenizerMap.containsKey(sourceLangKey)){
-
             throw new TranslationValidationException("limba sursa '" + sourceLang + "' nu e suportata momentan");
         }
 
@@ -155,8 +167,7 @@ public class TranslationService {
             System.out.println("DEBUG: Token = " + token + ", Tag POS = " + tag + ", Lemma = " + lemma);
 
             String wordToTranslate;
-            String translatedWord;
-
+            String translatedWord = null;
 
             if (lemma != null && !lemma.equals("O") && !tag.matches("\\p{Punct}")) {
                 wordToTranslate = lemma;
@@ -164,12 +175,15 @@ public class TranslationService {
                 wordToTranslate = token;
             }
 
-
+            // Detectarea subiectului
             if (tags[i].startsWith("PRP") || tags[i].startsWith("NNP")) {
                 String potentialSubject = wordToTranslate.toLowerCase();
                 if (potentialSubject.equals("i") || potentialSubject.equals("you") || potentialSubject.equals("he") ||
                         potentialSubject.equals("she") || potentialSubject.equals("it") || potentialSubject.equals("we") ||
-                        potentialSubject.equals("they")) {
+                        potentialSubject.equals("they") ||
+                        potentialSubject.equals("ich") || potentialSubject.equals("du") || potentialSubject.equals("er") ||
+                        potentialSubject.equals("sie") || potentialSubject.equals("es") || potentialSubject.equals("wir") ||
+                        potentialSubject.equals("ihr")) {
                     last_subject = potentialSubject;
                 }
             }
@@ -178,36 +192,47 @@ public class TranslationService {
             if (tag.matches("\\p{Punct}")) {
                 translatedWord = token;
             } else {
-                translatedWord = translationDictionary.getTranslation(wordToTranslate.toLowerCase(), tag);
-
-                if (translatedWord == null) {
-                    translatedWord = token;
+                // CORECȚIE: Logica Auxiliarului 'Do' eliminată de la începutul propoziției
+                boolean isAuxiliaryDo = false;
+                if (sourceLangKey.equals("en") && i == 0 && token.equalsIgnoreCase("Do") && tag.startsWith("VB")) {
+                    isAuxiliaryDo = true;
+                    translatedWord = "";
                 }
 
-                else if (tag.startsWith("VBD") && translatedWord.startsWith("a ") && last_subject != null) {
+                if (!isAuxiliaryDo) {
+                    translatedWord = translationDictionary.getTranslation(wordToTranslate.toLowerCase(), tag, sourceLangKey);
 
-                    String participle = getPastParticiple(translatedWord);
-                    String auxiliary = getAuxiliary(last_subject);
+                    if (translatedWord == null) {
+                        translatedWord = token;
+                    }
 
-                    translatedWord = auxiliary + " " + participle;
-                }
+                    // Logica pentru Timpul Trecut (VBD) -> Perfect Compus (doar pentru EN)
+                    else if (tag.equals("VBD") && translatedWord.startsWith("a ") && last_subject != null && sourceLangKey.equals("en")) {
+                        String participle = getPastParticiple(translatedWord);
+                        String auxiliary = getAuxiliary(last_subject);
+                        translatedWord = auxiliary + " " + participle;
+                    }
 
-                else if (tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null) {
-
-                    translatedWord = conjugaVerb(translatedWord, last_subject);
+                    // Logica existentă: Prezent Simplu (VBP, VBZ, etc.)
+                    else if (tags[i].startsWith("VB") && translatedWord.startsWith("a ") && last_subject != null) {
+                        translatedWord = conjugaVerb(translatedWord, last_subject, sourceLangKey);
+                    }
                 }
             }
 
-            if (Character.isUpperCase(token.charAt(0)) && translatedWord.length() > 0) {
+            // Logica de Capitalizare
+            if (translatedWord != null && !translatedWord.isEmpty() && Character.isUpperCase(token.charAt(0))) {
                 translatedWord = Character.toUpperCase(translatedWord.charAt(0)) + translatedWord.substring(1);
             }
 
-
-            if (i > 0 && !token.matches("\\p{Punct}")) {
-                resultBuilder.append(" ");
+            // Logica de Spatiere și Append
+            if (translatedWord != null && !translatedWord.isEmpty()) {
+                // Adaugă spațiu doar dacă nu e primul token și nu e punctuație
+                if (resultBuilder.length() > 0 && !token.matches("\\p{Punct}")) {
+                    resultBuilder.append(" ");
+                }
+                resultBuilder.append(translatedWord);
             }
-
-            resultBuilder.append(translatedWord);
         }
 
         return resultBuilder.toString().trim();

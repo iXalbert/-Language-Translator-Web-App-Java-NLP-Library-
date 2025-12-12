@@ -89,3 +89,58 @@ zeigen,VBP,a arăta
 ziehen,VBP,a trage
 zusammen,RB,împreună
 zweimal,RB,de două ori
+der,DT,cel
+die,DT,cea
+das,DT,cel
+ein,DT,un
+eine,DT,o
+ich,PRP,eu
+ich,PPER,eu
+du,PRP,tu
+er,PRP,el
+sie,PRP,ea
+es,PRP,el
+wir,PRP,noi
+ihr,PRP,voi
+sie,PRP,ei
+bin,VBP,sunt
+bin,VAFIN,sunt
+bist,VBP,ești
+ist,VBP,este
+sind,VBP,suntem
+seid,VBP,sunteți
+haben,VBP,a avea
+hat,VBZ,are
+müssen,MD,a trebui
+können,MD,a putea
+gehen,VBP,a merge
+gehen,VBD,a mers
+sehen,VBP,a vedea
+machen,VBP,a face
+haus,NN,casă
+hund,NN,câine
+katze,NN,pisică
+buch,NN,carte
+essen,VBP,a mânca
+trinken,VBP,a bea
+gut,JJ,bun
+schlecht,JJ,rău
+groß,JJ,mare
+groß,ADJD,mare
+klein,JJ,mic
+schnell,RB,rapid
+heute,NN,astăzi
+morgen,NN,mâine
+aber,CC,dar
+und,CC,și
+oder,CC,sau
+von,IN,de la
+mit,IN,cu
+in,IN,în
+nach,IN,după
+zu,IN,la
+viel,RB,mult
+wenig,RB,puțin
+nie,RB,niciodată
+jetzt,RB,acum
+gern,RB,cu plăcere

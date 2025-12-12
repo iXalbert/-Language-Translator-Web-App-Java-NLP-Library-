@@ -12,7 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Import(TranslationDictionary.class)
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(properties = {
+
+        "app.dictionary.paths={'en':'classpath:translation_data_en.txt', 'de':'classpath:translation_data_de.txt'}",
+        "nlp.token={'en':'classpath:token/en-token.bin', 'de':'classpath:token/de-token.bin'}",
+        "nlp.pos={'en':'classpath:pos/en-pos.bin', 'de':'classpath:pos/de-pos.bin'}",
+        "nlp.models.lemmatizer={'en':'classpath:models/en-lemmatizer.dict', 'de':'classpath:models/de-lemmatizer.dict'}"
+})
 public class TranslationDictionaryTest {
 
     @Autowired
@@ -25,27 +31,37 @@ public class TranslationDictionaryTest {
 
     @Test
     void testExistingWordTranslation() {
-        assertEquals("salut", dictionary.getTranslation("hello", "NNP"));
+        assertEquals("salut", dictionary.getTranslation("hello", "NNP", "en"));
     }
 
     @Test
     void testNonExistingWordReturnsNull() {
-        assertNull(dictionary.getTranslation("inexistent", "NN"));
+        assertNull(dictionary.getTranslation("inexistent", "NN", "en"));
     }
 
     @Test
     void testPOSDependentTranslation() {
-        assertEquals("salut", dictionary.getTranslation("hello", "NNP"));
-        assertNull(dictionary.getTranslation("hello", "VBD"));
+        assertEquals("salut", dictionary.getTranslation("hello", "NNP", "en"));
+        assertNull(dictionary.getTranslation("hello", "VBD", "en"));
     }
 
     @Test
     void testJavaTranslation() {
-        assertEquals("java", dictionary.getTranslation("java", "NNP"));
+        assertEquals("java", dictionary.getTranslation("java", "NNP", "en"));
     }
 
     @Test
     void testPunctuationTranslation() {
-        assertEquals("!", dictionary.getTranslation("!", "."));
+        assertEquals("!", dictionary.getTranslation("!", ".", "en"));
+    }
+
+    @Test
+    void testGermanWordTranslation() {
+        assertEquals("casă", dictionary.getTranslation("haus", "NN", "de"));
+    }
+
+    @Test
+    void testGermanVerbTranslation() {
+        assertEquals("a merge", dictionary.getTranslation("gehen", "VBP", "de"));
     }
 }

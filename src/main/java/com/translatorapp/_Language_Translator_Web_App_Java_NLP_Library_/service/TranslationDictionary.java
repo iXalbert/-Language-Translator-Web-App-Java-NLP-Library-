@@ -13,58 +13,62 @@ import java.util.Map;
 @Component
 public class TranslationDictionary {
 
-    private final Map<String, String> dictionary = new HashMap<>();
+    private final Map<String, Map<String, String>> dictionaries = new HashMap<>();
 
-    @Value("${app.dictionary.path}") // Folosește calea scurtă
-    private Resource dictionaryFile;
+
+    @Value("#{${app.dictionary.paths}}")
+    private Map<String, Resource> dictionaryFiles;
 
     private String createKey(String word, String posTag){
-
         return word.toLowerCase() + "_" + posTag;
     }
 
     @PostConstruct
     public void init(){
+        System.out.println("Se initializeaza dicționarele pentru mai multe limbi...");
 
-        System.out.println("Se initializeaza dictionarul ");
+        for (Map.Entry<String, Resource> entry : dictionaryFiles.entrySet()) {
+            String lang = entry.getKey();
+            Resource resource = entry.getValue();
 
-        try(BufferedReader reader = new BufferedReader(
+            try(BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(resource.getInputStream()))){
 
-                new InputStreamReader(dictionaryFile.getInputStream()))){
+                Map<String, String> dictionary = new HashMap<>();
+                String line;
+                while ((line = reader.readLine()) != null){
+                    if(line.trim().isEmpty()){
+                        continue;
+                    }
 
-            String line;
+                    String[] parts = line.split(",", 3);
 
-            while ((line = reader.readLine()) != null){
+                    if(parts.length == 3){
+                        String sourceWord = parts[0].trim().toLowerCase();
+                        String posTag = parts[1].trim();
+                        String translation = parts[2].trim();
 
-                if(line.trim().isEmpty()){
-                    continue;
+                        String key = createKey(sourceWord,posTag);
+                        dictionary.put(key,translation);
+
+                    }else {
+                        System.err.println("Avertisment (" + lang + "): Linia de dictionar e incorecta: " + line);
+                    }
                 }
-
-                String[] parts = line.split(",", 3);
-
-                if(parts.length == 3){
-
-                    String sourceWord = parts[0].trim().toLowerCase();
-                    String posTag = parts[1].trim();
-                    String translation = parts[2].trim();
-
-                    String key = createKey(sourceWord,posTag);
-                    dictionary.put(key,translation);
-
-                    System.out.println("DEBUG : Cheia stocata : " + key);
-                }else {
-                    System.err.println("Avertisment : Linia de dictionar e incorecta asteapta 3 parametrii " + line);
-                }
+                dictionaries.put(lang, dictionary);
+                System.out.println("Dicționarul pentru limba " + lang.toUpperCase() + " s-a inițializat cu succes. Intrări: " + dictionary.size());
+            } catch (Exception e){
+                System.err.println("Eroare critică la fișierul de dicționar pentru " + lang.toUpperCase() + ": " + e.getMessage());
+                e.printStackTrace();
             }
-
-            System.out.println("Dictionarul s a initializazt cu succes");
-        } catch (Exception e){
-            System.err.println("Eroare critica la fisierul de dictionar " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
-    public String getTranslation(String cleanWord, String posTag){
+    public String getTranslation(String cleanWord, String posTag, String sourceLang){
+        Map<String, String> dictionary = dictionaries.get(sourceLang.toLowerCase());
+        if (dictionary == null) {
+            return null;
+        }
         return dictionary.get(createKey(cleanWord, posTag));
     }
 }

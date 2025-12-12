@@ -299,6 +299,8 @@ heavy,JJ,greu
 help,NN,ajutor
 help,VBP,a ajuta
 Hello,NNP,salut
+Hello,UH,salut
+hello,NNP,salut
 her,PRP$,ei
 here,RB,aici
 high,JJ,înalt
@@ -551,6 +553,9 @@ range,NN,gamă
 rate,NN,rată
 rather,RB,mai degrabă
 reach,VBP,a ajunge
+read,VB,a citi
+read,VBD,a citi
+read,VBZ,citește
 read,VBP,a citi
 ready,JJ,gata
 real,JJ,real
@@ -766,6 +771,7 @@ vote,VBP,a vota
 wait,VBP,a aștepta
 walk,VBP,a merge
 wall,NN,perete
+wants,VBZ,a vrea
 want,VBP,a vrea
 war,NN,război
 was,VBD,era
@@ -938,6 +944,7 @@ find,VBD,a găsi
 see,VBD,a vedea
 give,VBD,a da
 know,VBD,a ști
+know,VB,a știi
 take,VBZ,ia
 become,VBZ,devine
 think,VBZ,gândește
